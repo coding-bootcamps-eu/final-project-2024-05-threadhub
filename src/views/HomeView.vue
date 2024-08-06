@@ -1,7 +1,15 @@
 <template>
-  <div></div>
+  <div>
+    <HomeViewHeader />
+  </div>
 </template>
 <script>
-export default {};
+import HomeViewHeader from '@/components/HomeViewHeader.vue';
+
+export default {
+  components: {
+    HomeViewHeader,
+  },
+};
 </script>
 <style></style>
