@@ -1,0 +1,19 @@
+*,
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --background-color: #ccd5ae;
+  --background-inputfield: #fefae0;
+  --header-color: #71816d;
+  --link-color: #e9edc9;
+  --font-color: #fff;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+}
