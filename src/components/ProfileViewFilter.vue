@@ -44,7 +44,6 @@ export default {
 <style scoped>
 section {
   display: flex;
-  height: 100vh;
   flex-direction: column;
   align-items: center;
 
