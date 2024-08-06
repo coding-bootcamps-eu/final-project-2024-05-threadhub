@@ -1,7 +1,10 @@
 <template>
-  <div></div>
+ <ProfileViewFilter />
 </template>
 <script>
-export default {};
+import ProfileViewFilter from '@/components/ProfileViewFilter.vue';
+export default {
+components: {ProfileViewFilter}
+};
 </script>
 <style></style>
