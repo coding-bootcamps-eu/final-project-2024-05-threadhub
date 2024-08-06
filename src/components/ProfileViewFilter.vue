@@ -48,19 +48,19 @@ section {
   flex-direction: column;
   align-items: center;
 
-  padding: 18vh;
+  padding: 20vh;
 }
 
 .search-filter {
   display: flex;
   flex-direction: row;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .search-filter input {
-  width: 13.5rem;
-  height: 2.25rem;
-  border: 1px solid Black;
+  width: 14.5rem;
+  height: 2rem;
+  border: none;
   border-radius: 10px;
   background-color: var(--background-inputfield);
   padding-left: 0.5rem;
@@ -68,11 +68,11 @@ section {
 }
 
 .search-filter button {
-  width: 4rem;
+  width: 6rem;
   font-size: 1.25rem;
-
+  border: none;
   border-radius: 10px;
-  border: 1px solid black;
+
   background-color: var(--background-inputfield);
 }
 
@@ -80,6 +80,8 @@ section {
   display: flex;
   justify-content: space-between;
   padding-top: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .radio-div {
