@@ -1,15 +1,16 @@
 <template>
   <div id="home">
-    <header></header>
+    <header><HomeViewHeader /></header>
     <div class="filter"><ProfileViewFilter /></div>
     <footer><FooterComponent /></footer>
   </div>
 </template>
 <script>
+import HomeViewHeader from '@/components/HomeViewHeader.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import ProfileViewFilter from '@/components/ProfileViewFilter.vue';
 export default {
-  components: { ProfileViewFilter, FooterComponent },
+  components: { ProfileViewFilter, FooterComponent, HomeViewHeader },
 };
 </script>
 <style scoped>
