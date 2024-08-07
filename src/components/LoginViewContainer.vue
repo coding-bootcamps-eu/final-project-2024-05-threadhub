@@ -2,11 +2,11 @@
   <div class="login-container">
     <div class="login-username">
       <label for="username">Benutzername:</label>
-      <input type="text" id="username" v-model="username" placeholder="" />
+      <input type="text" id="username" placeholder="" />
     </div>
     <div class="login-password">
       <label for="password">Password:</label>
-      <input type="password" id="password" v-model="password" placeholder="" />
+      <input type="password" id="password" placeholder="" />
     </div>
     <div class="login">
       <a href="#">Regristrierung</a>
