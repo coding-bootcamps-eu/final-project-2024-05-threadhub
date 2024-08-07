@@ -2,6 +2,7 @@
   <div id="home">
     <header><HomeViewHeader /></header>
     <div class="filter"><ProfileViewFilter /></div>
+    <div class="post-list-container"><PostListContainer /></div>
     <footer><FooterComponent /></footer>
   </div>
 </template>
@@ -9,8 +10,9 @@
 import HomeViewHeader from '@/components/HomeViewHeader.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import ProfileViewFilter from '@/components/ProfileViewFilter.vue';
+import PostListContainer from '@/components/PostListContainer.vue';
 export default {
-  components: { ProfileViewFilter, FooterComponent, HomeViewHeader },
+  components: { ProfileViewFilter, FooterComponent, HomeViewHeader, PostListContainer },
 };
 </script>
 <style scoped>
@@ -25,5 +27,10 @@ export default {
 
 .footer {
   flex-shrink: 0;
+}
+
+.post-list-container {
+  padding: 1rem;
+  margin-top: -4rem;
 }
 </style>
