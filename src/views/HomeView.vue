@@ -2,7 +2,7 @@
   <div id="home">
     <header><HomeViewHeader /></header>
     <div class="filter"><ProfileViewFilter /></div>
-    <div class="post-list-container"><PostListContainer /></div>
+    <PostListContainer />
     <footer><FooterComponent /></footer>
   </div>
 </template>
@@ -19,18 +19,15 @@ export default {
 #home {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-}
-.filter {
-  flex: 1;
+  height: 100vh;
 }
 
-.footer {
-  flex-shrink: 0;
+.filter {
+  margin-top: 2rem;
 }
 
 .post-list-container {
-  padding: 1rem;
-  margin-top: -4rem;
+  flex: 1;
+  max-height: 70vh;
 }
 </style>

@@ -46,8 +46,6 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  padding: 20vh;
 }
 
 .search-filter {
