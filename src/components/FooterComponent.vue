@@ -10,8 +10,7 @@
 div {
   display: flex;
   justify-content: center;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.25rem;
   color: var(--link-color);
 }
 </style>
