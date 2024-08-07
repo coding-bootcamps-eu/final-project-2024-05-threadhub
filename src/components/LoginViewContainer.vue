@@ -77,7 +77,7 @@
   border-radius: 0.7rem;
   border: none;
   cursor: not-allowed;
-  background-color: hsl(0, 0%, 85%);
+  background-color: var(--background-inputfield);
   color: black;
 }
 
