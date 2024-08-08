@@ -9,7 +9,7 @@
           id="search-filter"
           placeholder="Search..."
         /><label for="search-filter"></label>
-        <button>Post</button>
+        <button @click="openCreatePostContainer">Post</button>
       </div>
       <div class="post-filter">
         <div class="radio-div">
@@ -32,10 +32,27 @@
         </div>
       </div>
     </div>
+    <CreatePostContainer v-if="isContainerVisible" @close="isContainerVisible = false" />
   </section>
 </template>
 <script>
+import CreatePostContainer from './CreatePostContainer.vue';
+
 export default {
+  components: {
+    CreatePostContainer,
+  },
+  data() {
+    return {
+      isContainerVisible: false,
+    };
+  },
+  methods: {
+    openCreatePostContainer() {
+      this.isContainerVisible = true;
+    },
+  },
+
   mounted() {
     this.$refs.textInput.focus();
   },
