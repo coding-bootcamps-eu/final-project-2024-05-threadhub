@@ -13,22 +13,35 @@
       </div>
       <div class="post-filter">
         <div class="radio-div">
-          <input type="radio" name="filter" id="filter-all" value="filter-all" /><label
-            for="filter-all"
-            >all</label
-          >
+          <input
+            type="radio"
+            name="filter"
+            id="filter-all"
+            value="filter-all"
+            checked
+            v-model="selectedFilter"
+            @change="emitFilter"
+          /><label for="filter-all">all</label>
         </div>
         <div class="radio-div">
-          <input type="radio" name="filter" id="filter-likes" value="filter-likes" /><label
-            for="filter-likes"
-            >most Liked</label
-          >
+          <input
+            type="radio"
+            name="filter"
+            id="filter-likes"
+            value="filter-likes"
+            v-model="selectedFilter"
+            @change="emitFilter"
+          /><label for="filter-likes">most Liked</label>
         </div>
         <div class="radio-div">
-          <input type="radio" name="filter" id="filter-new" value="filter-new" /><label
-            for="filter-new"
-            >new</label
-          >
+          <input
+            type="radio"
+            name="filter"
+            id="filter-new"
+            value="filter-new"
+            v-model="selectedFilter"
+            @change="emitFilter"
+          /><label for="filter-new">new</label>
         </div>
       </div>
     </div>
@@ -36,6 +49,16 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      selectedFilter: 'all',
+    };
+  },
+  methods: {
+    emitFilter() {
+      this.$emit('updateFilter', this.selectedFilter);
+    },
+  },
   mounted() {
     this.$refs.textInput.focus();
   },

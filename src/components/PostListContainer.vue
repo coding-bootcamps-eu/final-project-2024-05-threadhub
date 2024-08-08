@@ -1,9 +1,11 @@
 <template>
   <div class="post-list-container">
-    <div v-for="post in posts" :key="post.id" class="post" :id="post.id">
+    <div v-for="post in filteredPosts" :key="post.id" class="post" :id="post.id">
       <div class="title">{{ post.title }}</div>
       <div class="tags-container">
-        <div v-for="(tag, tagIndex) in post.tags" :key="tagIndex" class="tags">{{ tag }}</div>
+        <div v-for="tag in post.tags" :key="tag" class="tags">
+          {{ tag }}
+        </div>
       </div>
     </div>
   </div>
@@ -11,16 +13,21 @@
 
 <script>
 export default {
-  data() {
-    return {
-      posts: [],
-      apiUrl: import.meta.env.VITE_POST_URL,
-    };
+  props: {
+    posts: Array,
+    selectedFilter: String,
   },
-  async created() {
-    const response = await fetch(this.apiUrl);
-    this.posts = await response.json();
-    console.log(this.posts);
+  computed: {
+    filteredPosts() {
+      let result = [...this.posts];
+
+      if (this.selectedFilter === 'filter-likes') {
+        return result.sort((a, b) => b.upvotes - a.upvotes);
+      } else if (this.selectedFilter === 'filter-new') {
+        return result.sort((a, b) => b.createdAt - a.createdAt);
+      }
+      return this.posts;
+    },
   },
 };
 </script>
