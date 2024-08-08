@@ -26,7 +26,8 @@ export default {
         return result.filter(
           (post) =>
             post.title.toLowerCase().includes(this.wordSearch.toLowerCase()) ||
-            post.text.toLowerCase().includes(this.wordSearch.toLowerCase()),
+            post.text.toLowerCase().includes(this.wordSearch.toLowerCase()) ||
+            post.tags.some((tag) => tag.toLowerCase().includes(this.wordSearch.toLowerCase())),
         );
       }
 
