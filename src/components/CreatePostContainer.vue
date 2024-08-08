@@ -1,0 +1,133 @@
+<template>
+  <div class="create-post-container" @click.self="close">
+    <div class="create-post">
+      <form @submit.prevent="createPost">
+        <div class="create-post-title">
+          <input class="text" type="text" id="title" placeholder="title" />
+        </div>
+        <div class="create-post-content">
+          <textarea id="text" class="content" placeholder="Dein fragwürdiger Senf...."></textarea>
+        </div>
+        <div class="create-post-tags">
+          <input class="tag" type="text" id="tag1" placeholder="Tag" />
+          <input class="tag" type="text" id="tag1" placeholder="Tag" />
+        </div>
+
+        <div class="action-button">
+          <button class="create-button" type="submit">Create</button>
+          <button class="close-button" type="button" @click="close">&times;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      title: '',
+      text: '',
+      tag1: '',
+      tag2: '',
+    };
+  },
+  methods: {
+    close() {
+      this.$emit('close');
+    },
+  },
+};
+</script>
+
+<style scoped>
+.create-post-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  height: 100%;
+  width: 100%;
+  padding: 3rem 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.325);
+}
+
+.close-button {
+  position: absolute;
+  top: 3.5rem;
+  right: 1.7rem;
+  background: rgba(255, 255, 255, 0);
+  border: none;
+  font-size: 2rem;
+  color: black;
+  cursor: pointer;
+}
+.create-post {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  padding: 3.5rem 1rem;
+  background-color: var(--header-color);
+  border-radius: 1rem;
+}
+.create-post-title {
+  margin-bottom: 1rem;
+}
+.create-post-title .text {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: black;
+  background-color: var(--background-inputfield);
+}
+.create-post-content {
+  margin-bottom: 1rem;
+}
+.create-post-content .content {
+  width: 100%;
+  height: 20rem;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  font-size: 1rem;
+
+  color: black;
+  background-color: var(--background-inputfield);
+}
+
+.create-post-tags {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+.create-post-tags .tag {
+  width: 15vh;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 0.3rem;
+  text-align: center;
+  color: black;
+  background-color: var(--background-inputfield);
+}
+.action-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.create-button {
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 0.5rem 2rem;
+  text-align: center;
+  color: black;
+  background-color: var(--background-inputfield);
+}
+</style>
