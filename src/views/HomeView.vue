@@ -5,15 +5,16 @@
       <ProfileViewFilter @updateFilter="updateSelectedFilter" />
     </div>
     <PostListContainer :posts="posts" :selectedFilter="selectedFilter" />
-    <footer><FooterComponent /></footer>
   </div>
 </template>
+
 <script>
 import HomeViewHeader from '@/components/HomeViewHeader.vue';
-import FooterComponent from '@/components/FooterComponent.vue';
 import ProfileViewFilter from '@/components/ProfileViewFilter.vue';
 import PostListContainer from '@/components/PostListContainer.vue';
+
 export default {
+
   data() {
     return {
       posts: [],
@@ -26,7 +27,7 @@ export default {
       this.selectedFilter = filter;
     },
   },
-  components: { ProfileViewFilter, FooterComponent, HomeViewHeader, PostListContainer },
+  components: { ProfileViewFilter, HomeViewHeader, PostListContainer },
   async created() {
     const response = await fetch(this.apiUrl + 'posts');
     this.posts = await response.json();
@@ -34,11 +35,11 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 #home {
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
 
 .filter {
