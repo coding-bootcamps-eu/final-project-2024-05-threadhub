@@ -2,9 +2,9 @@
   <div id="home">
     <header><HomeViewHeader /></header>
     <div class="filter">
-      <ProfileViewFilter @updateFilter="updateSelectedFilter" />
+      <ProfileViewFilter @updateFilter="updateSelectedFilter" @updateSearch="updateWordSearch" />
     </div>
-    <PostListContainer :posts="posts" :selectedFilter="selectedFilter" />
+    <PostListContainer :posts="posts" :selectedFilter="selectedFilter" :wordSearch="wordSearch" />
   </div>
 </template>
 
@@ -14,15 +14,19 @@ import ProfileViewFilter from '@/components/ProfileViewFilter.vue';
 import PostListContainer from '@/components/PostListContainer.vue';
 
 export default {
-
   data() {
     return {
       posts: [],
       apiUrl: import.meta.env.VITE_API_URL,
       selectedFilter: 'all',
+      wordSearch: '',
     };
   },
   methods: {
+    updateWordSearch(word) {
+      this.wordSearch = word;
+    },
+
     updateSelectedFilter(filter) {
       this.selectedFilter = filter;
     },
