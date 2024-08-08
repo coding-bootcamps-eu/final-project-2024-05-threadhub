@@ -9,37 +9,74 @@
           id="search-filter"
           placeholder="Search..."
         /><label for="search-filter"></label>
-        <button>Post</button>
+        <button @click="openCreatePostContainer">Post</button>
       </div>
       <div class="post-filter">
         <div class="radio-div">
-          <input type="radio" name="filter" id="filter-all" value="filter-all" /><label
-            for="filter-all"
-            >all</label
-          >
+          <input
+            type="radio"
+            name="filter"
+            id="filter-all"
+            value="filter-all"
+            checked
+            v-model="selectedFilter"
+            @change="emitFilter"
+          /><label for="filter-all">all</label>
         </div>
         <div class="radio-div">
-          <input type="radio" name="filter" id="filter-likes" value="filter-likes" /><label
-            for="filter-likes"
-            >most Liked</label
-          >
+          <input
+            type="radio"
+            name="filter"
+            id="filter-likes"
+            value="filter-likes"
+            v-model="selectedFilter"
+            @change="emitFilter"
+          /><label for="filter-likes">most Liked</label>
         </div>
         <div class="radio-div">
-          <input type="radio" name="filter" id="filter-new" value="filter-new" /><label
-            for="filter-new"
-            >new</label
-          >
+          <input
+            type="radio"
+            name="filter"
+            id="filter-new"
+            value="filter-new"
+            v-model="selectedFilter"
+            @change="emitFilter"
+          /><label for="filter-new">new</label>
         </div>
       </div>
     </div>
+    <CreatePostContainer v-if="isContainerVisible" @close="isContainerVisible = false" />
   </section>
 </template>
 <script>
+import CreatePostContainer from './CreatePostContainer.vue';
+
 export default {
+
+  components: {
+    CreatePostContainer,
+  },
+
+  data() {
+    return {
+      selectedFilter: 'all',
+            isContainerVisible: false,
+    };
+  },
+  methods: {
+    emitFilter() {
+      this.$emit('updateFilter', this.selectedFilter);
+    },
+      openCreatePostContainer() {
+      this.isContainerVisible = true;
+    },
+  },
+
   mounted() {
     this.$refs.textInput.focus();
   },
 };
+
 </script>
 <style scoped>
 section {
