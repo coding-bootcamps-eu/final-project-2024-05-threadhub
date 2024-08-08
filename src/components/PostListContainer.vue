@@ -1,6 +1,6 @@
 <template>
   <div class="post-list-container">
-    <div v-for="post in posts" :key="post.id" class="post">
+    <div v-for="post in posts" :key="post.id" class="post" :id="post.id">
       <div class="title">{{ post.title }}</div>
       <div class="tags-container">
         <div v-for="(tag, tagIndex) in post.tags" :key="tagIndex" class="tags">{{ tag }}</div>
@@ -13,39 +13,14 @@
 export default {
   data() {
     return {
-      posts: [
-        {
-          id: 1,
-          title: 'Flexbox in CSS anwenden?',
-          tags: ['CSS', 'Flexbox'],
-        },
-        {
-          id: 2,
-          title: 'How do open a Bottle?',
-          tags: ['Bottle', 'Open'],
-        },
-        {
-          id: 3,
-          title: 'Wie bekomme ich die Inhalte aus einem Array?',
-          tags: ['VueJS', 'Array'],
-        },
-        {
-          id: 4,
-          title: 'Flexbox in CSS anwenden?',
-          tags: ['CSS', 'Flexbox'],
-        },
-        {
-          id: 5,
-          title: 'Flexbox in CSS anwenden?',
-          tags: ['CSS', 'Flexbox'],
-        },
-        {
-          id: 6,
-          title: 'Flexbox in CSS anwenden?',
-          tags: ['CSS', 'Flexbox'],
-        },
-      ],
+      posts: [],
+      apiUrl: import.meta.env.VITE_POST_URL,
     };
+  },
+  async created() {
+    const response = await fetch(this.apiUrl);
+    this.posts = await response.json();
+    console.log(this.posts);
   },
 };
 </script>
