@@ -3,10 +3,10 @@
     <div class="create-post">
       <form @submit.prevent="createPost">
         <div class="create-post-title">
-          <input class="text" type="text" id="title" placeholder="title" />
+          <input class="text" type="text" id="title" placeholder="Title..." />
         </div>
         <div class="create-post-content">
-          <textarea id="text" class="content" placeholder="Dein fragwürdiger Senf...."></textarea>
+          <textarea id="text" class="content" placeholder="Dein fragwürdiger Senf..."></textarea>
         </div>
         <div class="create-post-tags">
           <input class="tag" type="text" id="tag1" placeholder="Tag" />
@@ -61,7 +61,7 @@ export default {
   background: rgba(255, 255, 255, 0);
   border: none;
   font-size: 2rem;
-  color: black;
+  color: var(--background-inputfield);
   cursor: pointer;
 }
 .create-post {
