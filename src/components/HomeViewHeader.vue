@@ -32,7 +32,8 @@ export default {
 }
 
 img {
-  height: 2rem;
+  height: 1.75rem;
+  margin-top: 0.2rem;
 }
 
 .dropdown-button {

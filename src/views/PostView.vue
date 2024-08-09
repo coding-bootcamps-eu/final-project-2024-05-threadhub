@@ -1,17 +1,21 @@
 <template>
   <div>
     <header><HomeViewHeader /></header>
-    <main><PostViewPostContent /></main>
+    <main>
+      <TitlePostView />
+       <main><PostViewPostContent /></main>
+    </main>
   </div>
 </template>
 
 <script>
 import HomeViewHeader from '@/components/HomeViewHeader.vue';
-import PostViewPostContent from '@/components/PostViewPostContent.vue';
+import TitlePostView from '@/components/TitlePostView.vue';
 export default {
   components: {
     HomeViewHeader,
-    PostViewPostContent,
+    TitlePostView,
+       PostViewPostContent,
   },
 };
 </script>
