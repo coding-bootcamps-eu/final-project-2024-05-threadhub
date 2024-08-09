@@ -20,6 +20,8 @@
   font-weight: 600;
 
   height: 10rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 .scroll-content {
   height: 100%;
