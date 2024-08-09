@@ -2,7 +2,7 @@
   <div class="container">
     <ProfileViewHeader />
     <ProfileViewStatus />
-    <LastPostListContainer :posts="filteredPosts" />
+    <LastPostListContainer :posts="posts" />
   </div>
 </template>
 
@@ -16,8 +16,6 @@ export default {
     return {
       posts: [],
       apiUrl: import.meta.env.VITE_API_URL,
-      selectedFilter: 'all',
-      wordSearch: '',
     };
   },
 

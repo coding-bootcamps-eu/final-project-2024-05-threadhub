@@ -1,6 +1,6 @@
 <template>
   <div class="post-list-container">
-    <div v-for="post in filteredPosts" :key="post.id" class="post" :id="post.id">
+    <div v-for="post in posts" :key="post.id" class="post" :id="post.id">
       <div class="title">{{ post.title }}</div>
       <div class="tags-container">
         <div v-for="tag in post.tags" :key="tag" class="tags">
@@ -28,7 +28,7 @@ export default {
   padding: 1.5rem;
   background-color: var(--header-color);
   border-radius: 1.3rem;
-  height: 250px;
+  height: 300px;
   overflow-y: auto;
   margin: 2.2rem;
 }
@@ -48,7 +48,7 @@ export default {
 .title {
   grid-row-start: 2;
   grid-row-end: 3;
-  font-size: 1.25rem;
+  font-size: 0.7rem;
 }
 
 .tags-container {
@@ -59,7 +59,7 @@ export default {
 }
 
 .tags {
-  font-size: 0.66rem;
+  font-size: 0.4rem;
   background-color: red;
   padding: 0.15rem 0.35rem;
   border-radius: 10px;
