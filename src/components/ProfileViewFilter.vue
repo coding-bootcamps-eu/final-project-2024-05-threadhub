@@ -7,6 +7,8 @@
           name="text"
           ref="textInput"
           id="search-filter"
+          v-model="wordSearch"
+          @input="emitSearch"
           placeholder="Search..."
         /><label for="search-filter"></label>
         <button @click="openCreatePostContainer">Post</button>
@@ -52,22 +54,26 @@
 import CreatePostContainer from './CreatePostContainer.vue';
 
 export default {
-
   components: {
     CreatePostContainer,
   },
 
   data() {
     return {
+      wordSearch: '',
       selectedFilter: 'all',
-            isContainerVisible: false,
+      isContainerVisible: false,
     };
   },
   methods: {
+    emitSearch() {
+      this.$emit('updateSearch', this.wordSearch);
+    },
+
     emitFilter() {
       this.$emit('updateFilter', this.selectedFilter);
     },
-      openCreatePostContainer() {
+    openCreatePostContainer() {
       this.isContainerVisible = true;
     },
   },
@@ -76,7 +82,6 @@ export default {
     this.$refs.textInput.focus();
   },
 };
-
 </script>
 <style scoped>
 section {

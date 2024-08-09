@@ -16,16 +16,27 @@ export default {
   props: {
     posts: Array,
     selectedFilter: String,
+    wordSearch: String,
   },
   computed: {
     filteredPosts() {
       let result = [...this.posts];
+
+      if (this.wordSearch) {
+        return result.filter(
+          (post) =>
+            post.title.toLowerCase().includes(this.wordSearch.toLowerCase()) ||
+            post.text.toLowerCase().includes(this.wordSearch.toLowerCase()) ||
+            post.tags.some((tag) => tag.toLowerCase().includes(this.wordSearch.toLowerCase())),
+        );
+      }
 
       if (this.selectedFilter === 'filter-likes') {
         return result.sort((a, b) => b.upvotes - a.upvotes);
       } else if (this.selectedFilter === 'filter-new') {
         return result.sort((a, b) => b.createdAt - a.createdAt);
       }
+
       return this.posts;
     },
   },

@@ -3,6 +3,7 @@
     <header><HomeViewHeader /></header>
     <main>
       <TitlePostView />
+       <main><PostViewPostContent /></main>
     </main>
   </div>
 </template>
@@ -14,6 +15,7 @@ export default {
   components: {
     HomeViewHeader,
     TitlePostView,
+       PostViewPostContent,
   },
 };
 </script>
