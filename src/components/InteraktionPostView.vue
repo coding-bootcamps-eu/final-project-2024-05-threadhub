@@ -13,7 +13,7 @@
     </div>
     <button @click="showInput">Senf dazugeben</button>
   </div>
-  <div class="comment-section" v-show="showComment">
+  <form class="comment-section" v-show="showComment">
     <textarea
       v-model="userInput"
       maxlength="2000"
@@ -22,8 +22,11 @@
       id="comment-input"
       placeholder="Hier kannst du deinen Senf dazugeben..."
     /><label for="comment-input"></label>
-    <p>{{ maxCharLength() }}/{{ charLength }}</p>
-  </div>
+    <div class="button-section">
+      <button type="submit">abschicken</button>
+      <p>{{ maxCharLength() }}/{{ charLength }}</p>
+    </div>
+  </form>
 </template>
 <script>
 export default {
@@ -84,6 +87,12 @@ export default {
   background-color: var(--header-color);
 }
 
+.interaktion button:hover {
+  cursor: pointer;
+  background-color: var(--background-inputfield);
+  color: black;
+}
+
 .comment-section {
   display: flex;
   flex-direction: column;
@@ -109,5 +118,25 @@ export default {
 
 .comment-section p {
   text-align: right;
+}
+
+.button-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-section button {
+  height: 1.75rem;
+
+  background-color: var(--header-color);
+  color: var(--font-color);
+
+  border-radius: 8px;
+  border: none;
+}
+
+.button-section button:active {
+  background-color: var(--background-color);
 }
 </style>
