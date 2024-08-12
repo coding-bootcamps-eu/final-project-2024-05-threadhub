@@ -1,6 +1,6 @@
 <template>
   <header class="homeview-header">
-    <h2>ThreadHub</h2>
+    <a class="logo" href="/">ThreadHub</a>
     <div class="dropdown">
       <button class="dropdown-button">
         <img src="../assets/images/threadhub.png" alt="Logo der ThreadHub App" />
@@ -27,13 +27,18 @@ export default {
   align-items: center;
   padding: 1rem;
   height: 3rem;
-  background-color: var(--background-color);
-  color: var(--header-color);
 }
 
 img {
   height: 1.75rem;
   margin-top: 0.2rem;
+}
+
+.logo {
+  text-decoration: none;
+  color: var(--header-color);
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .dropdown-button {

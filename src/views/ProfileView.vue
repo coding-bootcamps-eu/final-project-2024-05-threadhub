@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <HomeViewHeader />
     <ProfileViewHeader />
     <ProfileViewStatus />
     <LastPostListContainer :posts="posts" />
@@ -10,6 +11,7 @@
 import LastPostListContainer from '@/components/LastPostListContainer.vue';
 import ProfileViewHeader from '@/components/ProfileViewHeader.vue';
 import ProfileViewStatus from '@/components/ProfileViewStatus.vue';
+import HomeViewHeader from '@/components/HomeViewHeader.vue';
 
 export default {
   data() {
@@ -19,7 +21,7 @@ export default {
     };
   },
 
-  components: { ProfileViewHeader, ProfileViewStatus, LastPostListContainer },
+  components: { ProfileViewHeader, ProfileViewStatus, LastPostListContainer, HomeViewHeader },
   async created() {
     const response = await fetch(this.apiUrl + 'posts');
     this.posts = await response.json();
