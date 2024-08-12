@@ -2,18 +2,56 @@
   <div class="login-container">
     <div class="login-username">
       <label for="username">Benutzername:</label>
-      <input type="text" id="username" placeholder="" />
+      <input type="text" id="username" placeholder="" v-model="username" />
     </div>
     <div class="login-password">
       <label for="password">Password:</label>
-      <input type="password" id="password" placeholder="" />
+      <input type="password" id="password" placeholder="" v-model="password" />
     </div>
     <div class="login">
       <a href="#">Regristrierung</a>
-      <button @click="login" disabled>Login</button>
+      <button @click="checkUser()">Login</button>
     </div>
+    <p v-if="errorMessages">{{ errorMessages }}</p>
   </div>
 </template>
+
+<script>
+import { useUserStore } from '@/stores/user';
+
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+      errorMessages: '',
+    };
+  },
+  methods: {
+    async checkUser() {
+      const response = await fetch('http://localhost:3000/users');
+      const users = await response.json();
+
+      const foundUser = users.find(
+        (user) => user.username === this.username && user.password === this.password,
+      );
+
+      if (foundUser) {
+        localStorage.setItem('userId', foundUser.id);
+        console.log(foundUser);
+
+        const userStore = useUserStore();
+        console.log(userStore);
+        await userStore.getUserInfo();
+
+        this.$router.push('/home');
+      } else {
+        this.errorMessage = 'Benutzername oder Passwort ist falsch';
+      }
+    },
+  },
+};
+</script>
 
 <style scoped>
 .login-container {

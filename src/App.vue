@@ -7,11 +7,16 @@
 
 <script>
 import FooterComponent from '@/components/FooterComponent.vue';
+// import { useUserStore } from './stores/user';
 
 export default {
   components: {
     FooterComponent,
   },
+  // created() {
+  //   const userStore = useUserStore();
+  //   userStore.getUserInfo();
+  // },
 };
 </script>
 
