@@ -2,7 +2,7 @@
   <div class="header">
     <section class="cover">
       <div class="container-cover-picture">
-        <img class="cover-picture" src="https://picsum.photos/200/300" alt="Titelbild" />
+        <img class="cover-picture" src="https://picsum.photos/700/700" alt="Titelbild" />
       </div>
       <img class="profile-picture" src="@/assets/images/minion.png" alt="Profilbild" />
     </section>
@@ -16,7 +16,7 @@
 
 .cover {
   position: relative;
-  height: 10rem;
+  height: 20rem;
 }
 
 .container-cover-picture {
@@ -35,8 +35,8 @@
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 8rem;
-  height: 8rem;
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
 }
 </style>
