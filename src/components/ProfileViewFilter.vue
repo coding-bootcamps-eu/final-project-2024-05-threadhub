@@ -13,39 +13,35 @@
         /><label for="search-filter"></label>
         <button @click="openCreatePostContainer">Post</button>
       </div>
-      <div class="post-filter">
-        <div class="radio-div">
-          <input
-            type="radio"
-            name="filter"
-            id="filter-all"
-            value="filter-all"
-            checked
-            v-model="selectedFilter"
-            @change="emitFilter"
-          /><label for="filter-all">all</label>
-        </div>
-        <div class="radio-div">
-          <input
-            type="radio"
-            name="filter"
-            id="filter-likes"
-            value="filter-likes"
-            v-model="selectedFilter"
-            @change="emitFilter"
-          /><label for="filter-likes">most Liked</label>
-        </div>
-        <div class="radio-div">
-          <input
-            type="radio"
-            name="filter"
-            id="filter-new"
-            value="filter-new"
-            v-model="selectedFilter"
-            @change="emitFilter"
-          /><label for="filter-new">new</label>
-        </div>
-      </div>
+      <form class="post-filter">
+        <input
+          type="radio"
+          name="filter"
+          id="filter-all"
+          value="filter-all"
+          checked
+          v-model="selectedFilter"
+          @change="emitFilter"
+        /><label for="filter-all">all</label>
+
+        <input
+          type="radio"
+          name="filter"
+          id="filter-likes"
+          value="filter-likes"
+          v-model="selectedFilter"
+          @change="emitFilter"
+        /><label for="filter-likes">most Liked</label>
+
+        <input
+          type="radio"
+          name="filter"
+          id="filter-new"
+          value="filter-new"
+          v-model="selectedFilter"
+          @change="emitFilter"
+        /><label for="filter-new">new</label>
+      </form>
     </div>
     <CreatePostContainer v-if="isContainerVisible" @close="isContainerVisible = false" />
   </section>
@@ -96,16 +92,6 @@ section {
   gap: 0.25rem;
 }
 
-.search-filter input {
-  width: 14.5rem;
-  height: 2rem;
-  border: none;
-  border-radius: 10px;
-  background-color: var(--background-inputfield);
-  padding-left: 0.5rem;
-  font-size: 1.25rem;
-}
-
 .search-filter button {
   width: 6rem;
   font-size: 1.25rem;
@@ -117,20 +103,35 @@ section {
 
 .post-filter {
   display: flex;
-  justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 1rem 1rem 0 1rem;
+  justify-content: center;
 }
 
-.radio-div {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
+form input {
+  appearance: none;
+  position: absolute;
 }
 
-.radio-div input {
-  transform: scale(1.25);
+form label {
+  background-color: var(--background-inputfield);
+
+  cursor: pointer;
+
+  font-size: 1rem;
+
+  padding: 0.25rem 0.75rem;
+}
+
+form label:first-of-type {
+  border-radius: 8px 0 0 8px;
+}
+
+form label:last-of-type {
+  border-radius: 0 8px 8px 0;
+}
+
+form input:checked + label {
+  background-color: var(--header-color);
 }
 
 button:active {

@@ -5,6 +5,7 @@
       <TitlePostView />
       <PostPictureName />
       <PostViewPostContent />
+      <InteraktionPostView />
       <CommentSectionPostView />
     </main>
   </div>
@@ -16,6 +17,7 @@ import TitlePostView from '@/components/TitlePostView.vue';
 import PostViewPostContent from '@/components/PostViewPostContent.vue';
 import CommentSectionPostView from '@/components/CommentSectionPostView.vue';
 import PostPictureName from '@/components/PostPictureName.vue';
+import InteraktionPostView from '@/components/InteraktionPostView.vue';
 export default {
   components: {
     HomeViewHeader,
@@ -23,6 +25,7 @@ export default {
     PostViewPostContent,
     CommentSectionPostView,
     PostPictureName,
+    InteraktionPostView,
   },
 };
 </script>
