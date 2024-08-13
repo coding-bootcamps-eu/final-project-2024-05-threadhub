@@ -8,15 +8,26 @@
       <div class="dropdown-content">
         <a href="/profile">Mein Profil</a>
         <a href="#">Einstellungen</a>
-        <a href="#">Ausloggen</a>
+        <a href="#" @click="logout">Ausloggen</a>
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import { useUserStore } from '@/stores/user';
+
 export default {
   name: 'HomeViewHeader',
+  setup() {
+    const userStore = useUserStore();
+    const logout = () => {
+      userStore.logout();
+    };
+    return {
+      logout,
+    };
+  },
 };
 </script>
 
