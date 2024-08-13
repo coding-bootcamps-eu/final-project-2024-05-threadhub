@@ -23,7 +23,7 @@
       placeholder="Hier kannst du deinen Senf dazugeben..."
     /><label for="comment-input"></label>
     <div class="button-section">
-      <button type="submit">abschicken</button>
+      <button type="submit">Senf</button>
       <p>{{ maxCharLength() }}/{{ charLength }}</p>
     </div>
   </form>
