@@ -35,7 +35,6 @@ export default {
   async created() {
     const response = await fetch(this.apiUrl + 'posts');
     this.posts = await response.json();
-    console.log(this.posts);
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <header class="homeview-header">
-    <a class="logo" href="/">ThreadHub</a>
+    <a class="logo" href="/home">ThreadHub</a>
     <div class="dropdown">
       <button class="dropdown-button">
         <img src="../assets/images/threadhub.png" alt="Logo der ThreadHub App" />

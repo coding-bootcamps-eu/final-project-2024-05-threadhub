@@ -4,7 +4,7 @@ import router from '@/router/index.js';
 export const useUserStore = defineStore('user', {
   state() {
     return {
-      user: null,
+      user: JSON.parse(localStorage.getItem('user')) || null,
       api: import.meta.env.VITE_API_URL,
     };
   },
@@ -27,6 +27,8 @@ export const useUserStore = defineStore('user', {
       this.user = data;
 
       console.log(this.user);
+
+      localStorage.setItem('user', JSON.stringify(this.user));
 
       if (router.currentRoute.value.path === '/login') {
         router.push('/home');

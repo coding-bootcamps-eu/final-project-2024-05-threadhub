@@ -3,15 +3,30 @@
     <section class="profile-status-container">
       <div class="profile-status">
         <div>Likes:</div>
-        <div>35</div>
+        <div>{{ totalVotes }}</div>
       </div>
       <div class="profile-status">
-        <div>Posts:</div>
-        <div>5</div>
+        <div>Threads:</div>
+        <div>{{ totalPosts }}</div>
       </div>
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    totalVotes: {
+      type: Number,
+      required: true,
+    },
+    totalPosts: {
+      type: Number,
+      required: true,
+    },
+  },
+};
+</script>
 
 <style scoped>
 .container {
