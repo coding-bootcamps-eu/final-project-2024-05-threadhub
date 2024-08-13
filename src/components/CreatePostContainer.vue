@@ -3,14 +3,19 @@
     <div class="create-post">
       <form @submit.prevent="createPost">
         <div class="create-post-title">
-          <input class="text" type="text" id="title" placeholder="Title..." />
+          <input v-model="title" class="text" type="text" id="title" placeholder="Title..." />
         </div>
         <div class="create-post-content">
-          <textarea id="text" class="content" placeholder="Dein fragwürdiger Senf..."></textarea>
+          <textarea
+            v-model="text"
+            id="text"
+            class="content"
+            placeholder="Dein fragwürdiger Senf..."
+          ></textarea>
         </div>
         <div class="create-post-tags">
-          <input class="tag" type="text" id="tag1" placeholder="Tag" />
-          <input class="tag" type="text" id="tag1" placeholder="Tag" />
+          <input v-model="tag1" class="tag" type="text" id="tag1" placeholder="Tag" />
+          <input v-model="tag2" class="tag" type="text" id="tag1" placeholder="Tag" />
         </div>
 
         <div class="action-button">
@@ -34,6 +39,33 @@ export default {
   methods: {
     close() {
       this.$emit('close');
+    },
+
+    async createPost() {
+      const userId = localStorage.getItem('userId');
+      const createdAt = Date.now();
+
+      const newPost = {
+        title: this.title,
+        text: this.text,
+        tags: [this.tag1, this.tag2],
+        createdAt,
+        userId,
+        upvotes: 0,
+        downvotes: 0,
+      };
+
+      const response = await fetch('http://localhost:3000/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newPost),
+      });
+      if (response.ok) {
+        await response.json();
+        this.close();
+      }
     },
   },
 };
