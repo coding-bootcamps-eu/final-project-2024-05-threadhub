@@ -1,6 +1,12 @@
 <template>
   <div class="post-list-container">
-    <div v-for="post in filteredPosts" :key="post.id" class="post" :id="post.id">
+    <div
+      v-for="post in filteredPosts"
+      :key="post.id"
+      class="post"
+      :id="post.id"
+      @click="linkMyPost(post.id)"
+    >
       <div class="title">{{ post.title }}</div>
       <div class="tags-container">
         <div v-for="tag in post.tags" :key="tag" class="tags">
@@ -17,6 +23,11 @@ export default {
     posts: Array,
     selectedFilter: String,
     wordSearch: String,
+  },
+  methods: {
+    linkMyPost(postId) {
+      this.$router.push(`post/${postId}`);
+    },
   },
   computed: {
     filteredPosts() {

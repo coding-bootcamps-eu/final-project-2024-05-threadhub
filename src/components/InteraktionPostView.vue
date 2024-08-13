@@ -3,12 +3,12 @@
     <div class="votes-thread">
       <div class="votes" @click="counter++">
         <p>🠕</p>
-        <p>{{ counter }}</p>
+        <p>{{ post.upvotes }}</p>
       </div>
 
       <div class="votes" @click="down++">
         <p>🠗</p>
-        <p>{{ down }}</p>
+        <p>{{ post.downvotes }}</p>
       </div>
     </div>
     <button @click="showInput">Senf dazugeben</button>
@@ -30,6 +30,12 @@
 </template>
 <script>
 export default {
+  props: {
+    post: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       showComment: false,

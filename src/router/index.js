@@ -37,9 +37,10 @@ const router = createRouter({
       component: LoginView,
     },
     {
-      path: '/post',
+      path: '/post/:postId',
       name: 'postview',
       component: PostView,
+      props: true,
     },
 
     {

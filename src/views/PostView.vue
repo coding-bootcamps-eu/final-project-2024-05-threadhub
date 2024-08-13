@@ -2,10 +2,10 @@
   <div>
     <header><HomeViewHeader /></header>
     <main>
-      <TitlePostView />
-      <PostPictureName />
-      <PostViewPostContent />
-      <InteraktionPostView />
+      <TitlePostView :post="post" />
+      <PostPictureName :userId="post.userId" />
+      <PostViewPostContent :post="post" />
+      <InteraktionPostView :post="post" />
       <CommentSectionPostView />
     </main>
   </div>
@@ -26,6 +26,22 @@ export default {
     CommentSectionPostView,
     PostPictureName,
     InteraktionPostView,
+  },
+  props: {
+    postId: {
+      type: String,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      post: {},
+    };
+  },
+  async created() {
+    const response = await fetch(import.meta.env.VITE_API_URL + `posts/${this.postId}`);
+    this.post = await response.json();
+    console.log(this.post);
   },
 };
 </script>

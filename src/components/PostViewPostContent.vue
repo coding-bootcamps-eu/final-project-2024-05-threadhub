@@ -1,18 +1,21 @@
 <template>
   <div class="post-content-container">
     <div class="scroll-content">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae commodi corrupti dolore iusto
-      quae quas aut incidunt deserunt dolor, debitis ducimus molestias rerum quo modi rem explicabo
-      laborum libero similique officia blanditiis dolorum! Facere accusantium vitae ab quos!
-      Voluptates nobis perspiciatis porro ducimus quo quis perferendis sapiente qui consequuntur
-      veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae commodi corrupti
-      dolore iusto quae quas aut incidunt deserunt dolor, debitis ducimus molestias rerum quo modi
-      rem explicabo laborum libero similique officia blanditiis dolorum! Facere accusantium vitae ab
-      quos! Voluptates nobis perspiciatis porro ducimus quo quis perferendis sapiente qui
-      consequuntur veritatis.
+      {{ post.text }}
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    post: {
+      type: Object,
+      required: true,
+    },
+  },
+};
+</script>
 
 <style scoped>
 .post-content-container {

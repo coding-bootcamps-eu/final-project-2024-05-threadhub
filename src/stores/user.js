@@ -28,7 +28,7 @@ export const useUserStore = defineStore('user', {
 
       console.log(this.user);
 
-      localStorage.setItem('user', JSON.stringify(this.user));
+      localStorage.setItem('user', JSON.stringify(this.user.id));
 
       if (router.currentRoute.value.path === '/login') {
         router.push('/home');

@@ -1,11 +1,32 @@
 <template>
   <div class="thread-title">
-    <p><strong>09.08.2024</strong></p>
-    <h2>Tipps und Tricks für die dynamische Datenbindung in Vue.js</h2>
+    <p>
+      <strong>{{ dateFormat }}</strong>
+    </p>
+    <h2>{{ post.title }}</h2>
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  props: {
+    post: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    dateFormat() {
+      const date = new Date(this.post.createdAt);
+      return date.toLocaleDateString('de-DE', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      });
+    },
+  },
+};
+</script>
 
 <style>
 .thread-title {
