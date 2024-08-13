@@ -2,8 +2,8 @@
   <div class="container">
     <HomeViewHeader />
     <ProfileViewHeader />
-    <ProfileViewStatus />
-    <LastPostListContainer :posts="posts" />
+    <ProfileViewStatus :totalVotes="totalVotes" :totalPosts="totalPosts" />
+    <LastPostListContainer :filteredPosts="idFilterPost" />
   </div>
 </template>
 
@@ -14,18 +14,40 @@ import ProfileViewStatus from '@/components/ProfileViewStatus.vue';
 import HomeViewHeader from '@/components/HomeViewHeader.vue';
 
 export default {
+  components: { ProfileViewHeader, ProfileViewStatus, LastPostListContainer, HomeViewHeader },
   data() {
     return {
+      currentUserId: '',
       posts: [],
-      apiUrl: import.meta.env.VITE_API_URL,
+      totalVotes: 0,
+      totalPosts: 0,
     };
   },
+  methods: {
+    upVotesCounter() {
+      this.totalVotes = this.idFilterPost.reduce((total, post) => total + post.upvotes, 0);
+    },
 
-  components: { ProfileViewHeader, ProfileViewStatus, LastPostListContainer, HomeViewHeader },
+    postsCounter() {
+      this.totalPosts = this.idFilterPost.length;
+    },
+  },
+  computed: {
+    idFilterPost() {
+      return this.posts.filter((post) => post.userId === this.currentUserId);
+    },
+  },
+
   async created() {
-    const response = await fetch(this.apiUrl + 'posts');
-    this.posts = await response.json();
-    console.log(this.posts);
+    this.currentUserId = localStorage.getItem('userId');
+
+    const response = await fetch(import.meta.env.VITE_API_URL + 'posts');
+    const data = await response.json();
+    // console.log(data);
+
+    this.posts = data;
+    this.postsCounter();
+    this.upVotesCounter();
   },
 };
 </script>
