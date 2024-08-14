@@ -8,10 +8,7 @@
 <script>
 export default {
   props: {
-    userId: {
-      type: String,
-      required: true,
-    },
+    userId: null,
   },
   data() {
     return {
