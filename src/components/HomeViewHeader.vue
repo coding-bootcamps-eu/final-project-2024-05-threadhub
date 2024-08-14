@@ -7,6 +7,7 @@
       </button>
       <div class="dropdown-content">
         <a href="/profile">Mein Profil</a>
+        <a href="/meine-threads">Meine Threads</a>
         <a href="#">Einstellungen</a>
         <a href="#" @click="logout">Ausloggen</a>
       </div>
