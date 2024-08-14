@@ -43,7 +43,11 @@
         /><label for="filter-new">new</label>
       </form>
     </div>
-    <CreatePostContainer v-if="isContainerVisible" @close="isContainerVisible = false" />
+    <CreatePostContainer
+      v-if="isContainerVisible"
+      @close="closeCreatePostContainer"
+      @postCreated="handelPostCreated"
+    />
   </section>
 </template>
 <script>
@@ -71,6 +75,12 @@ export default {
     },
     openCreatePostContainer() {
       this.isContainerVisible = true;
+    },
+    closeCreatePostContainer() {
+      this.isContainerVisible = false;
+    },
+    handelPostCreated() {
+      this.$emit('postCreated');
     },
   },
 

@@ -2,7 +2,11 @@
   <div id="home">
     <header><HomeViewHeader /></header>
     <div class="filter">
-      <ProfileViewFilter @updateFilter="updateSelectedFilter" @updateSearch="updateWordSearch" />
+      <ProfileViewFilter
+        @updateFilter="updateSelectedFilter"
+        @updateSearch="updateWordSearch"
+        @postCreated="fetchPosts"
+      />
     </div>
     <PostListContainer :posts="posts" :selectedFilter="selectedFilter" :wordSearch="wordSearch" />
   </div>
@@ -23,6 +27,11 @@ export default {
     };
   },
   methods: {
+    async fetchPosts() {
+      const response = await fetch(this.apiUrl + 'posts');
+      this.posts = await response.json();
+    },
+
     updateWordSearch(word) {
       this.wordSearch = word;
     },
@@ -33,8 +42,7 @@ export default {
   },
   components: { ProfileViewFilter, HomeViewHeader, PostListContainer },
   async created() {
-    const response = await fetch(this.apiUrl + 'posts');
-    this.posts = await response.json();
+    await this.fetchPosts();
   },
 };
 </script>
