@@ -11,8 +11,15 @@
     <div class="login">
       <a href="#">Regristrierung</a>
       <button @click="checkUser()">Login</button>
+
+      <div v-if="showErrorMassages" class="massages">
+        <div class="error-massages">
+          <span class="close-button" @click="showErrorMassages = false">&times;</span>
+          <img src="/src/assets/images/erro.png" alt="logo" class="logo" />
+          <p>{{ errorMessages }}</p>
+        </div>
+      </div>
     </div>
-    <p v-if="errorMessages">{{ errorMessages }}</p>
   </div>
 </template>
 
@@ -24,7 +31,8 @@ export default {
     return {
       username: '',
       password: '',
-      errorMessages: '',
+      errorMessages: 'Benutzername oder Passwort ist falsch!',
+      showErrorMassages: false,
     };
   },
   methods: {
@@ -47,6 +55,9 @@ export default {
         this.$router.push('/home');
       } else {
         this.errorMessage = 'Benutzername oder Passwort ist falsch';
+        this.showErrorMassages = true;
+        this.username = '';
+        this.password = '';
       }
     },
   },
@@ -125,5 +136,48 @@ export default {
   text-decoration: none;
   color: var(--font-color);
   margin-left: 0.7rem;
+}
+
+.massages {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.error-massages {
+  background: white;
+  gap: 0.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: 30%;
+  margin-top: 20rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+.error-massages p {
+  color: red;
+}
+.close-button {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5px;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
 }
 </style>
