@@ -2,9 +2,11 @@
   <div>
     <header><HomeViewHeader /></header>
     <main>
-      <TitlePostView :post="post" />
+      <PostViewMenu @toggle-editing="toggleEditing" />
+      <TitlePostView :post="post" :is-edit="isEdit" @update-title="updateTitle" />
       <PostPictureName :userId="post.userId" />
-      <PostViewPostContent :post="post" />
+      <PostViewPostContent :post="post" :is-edit="isEdit" @update-text="updateText" />
+      <button v-if="isEdit" @click="savePost">Save Changes</button>
       <InteraktionPostView :post="post" />
       <CommentSectionPostView />
     </main>
@@ -18,6 +20,7 @@ import PostViewPostContent from '@/components/PostViewPostContent.vue';
 import CommentSectionPostView from '@/components/CommentSectionPostView.vue';
 import PostPictureName from '@/components/PostPictureName.vue';
 import InteraktionPostView from '@/components/InteraktionPostView.vue';
+import PostViewMenu from '@/components/PostViewMenu.vue';
 export default {
   components: {
     HomeViewHeader,
@@ -26,6 +29,7 @@ export default {
     CommentSectionPostView,
     PostPictureName,
     InteraktionPostView,
+    PostViewMenu,
   },
   props: {
     postId: {
@@ -36,7 +40,33 @@ export default {
   data() {
     return {
       post: {},
+      isEdit: false,
     };
+  },
+  methods: {
+    toggleEditing() {
+      this.isEdit = !this.isEdit;
+    },
+    updateTitle(newtitle) {
+      this.post.title = newtitle;
+    },
+    updateText(newText) {
+      this.post.text = newText;
+    },
+    async savePost() {
+      const response = await fetch(import.meta.env.VITE_API_URL + `posts/${this.postId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.post),
+      });
+
+      const data = await response.json();
+      this.post = data;
+      this.isEdit = false;
+      this.editField = null;
+    },
   },
   async created() {
     const response = await fetch(import.meta.env.VITE_API_URL + `posts/${this.postId}`);

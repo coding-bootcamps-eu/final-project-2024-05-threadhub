@@ -44,7 +44,7 @@ const router = createRouter({
     },
 
     {
-      path: '/myposts',
+      path: '/meine-threads',
       name: 'mypostview',
       component: MyPostView,
     },

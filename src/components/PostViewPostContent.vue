@@ -1,8 +1,14 @@
 <template>
   <div class="post-content-container">
-    <div class="scroll-content">
+    <div class="scroll-content" v-if="!isEdit" @click="toggleEditing">
       {{ post.text }}
     </div>
+    <textarea
+      v-if="isEdit"
+      v-model="editText"
+      @blur="emitUpdateTitle"
+      @keyup.enter="emitUpdateTitle"
+    ></textarea>
   </div>
 </template>
 
@@ -12,6 +18,32 @@ export default {
     post: {
       type: Object,
       required: true,
+    },
+    isEdit: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      editText: '',
+    };
+  },
+  watch: {
+    isEdit(newVal) {
+      if (newVal) {
+        this.editTitle = this.post.text;
+      }
+    },
+  },
+  methods: {
+    emitUpdateTitle() {
+      this.$emit('update-text', this.editText);
+    },
+    toggleEditing() {
+      if (this.isEditing) {
+        this.$emit('update-text', this.editText);
+      }
     },
   },
 };

@@ -3,7 +3,13 @@
     <p>
       <strong>{{ dateFormat }}</strong>
     </p>
-    <h2>{{ post.title }}</h2>
+    <h2 v-if="!isEdit" @click="toggleEditing">{{ post.title }}</h2>
+    <textarea
+      v-if="isEdit"
+      v-model="editTitle"
+      @blur="emitUpdateTitle"
+      @keyup.enter="emitUpdateTitle"
+    ></textarea>
   </div>
 </template>
 
@@ -13,6 +19,32 @@ export default {
     post: {
       type: Object,
       required: true,
+    },
+    isEdit: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      editTitle: '',
+    };
+  },
+  watch: {
+    isEdit(newVal) {
+      if (newVal) {
+        this.editTitle = this.post.title;
+      }
+    },
+  },
+  methods: {
+    emitUpdateTitle() {
+      this.$emit('update-title', this.editTitle);
+    },
+    toggleEditing() {
+      if (this.isEditing) {
+        this.$emit('update-title', this.editableTitle);
+      }
     },
   },
   computed: {
