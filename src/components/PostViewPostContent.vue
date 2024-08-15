@@ -29,5 +29,6 @@ export default {
 .scroll-content {
   height: 100%;
   overflow: auto;
+  word-break: break-all;
 }
 </style>
