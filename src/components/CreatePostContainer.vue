@@ -65,6 +65,7 @@ export default {
       if (response.ok) {
         await response.json();
         this.close();
+        this.$emit('postCreated');
       }
     },
   },
