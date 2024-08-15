@@ -24,11 +24,18 @@ export const useUserStore = defineStore('user', {
       const res = await fetch(import.meta.env.VITE_API_URL + 'users/' + id);
       const data = await res.json();
 
-      this.user = data;
+      this.user = {
+        username: data.username,
+        isAdmin: data.isAdmin,
+        id: data.id,
+        email: data.email,
+        upvotes: [],
+        downvotes: [],
+      };
 
       console.log(this.user);
 
-      localStorage.setItem('user', JSON.stringify(this.user.id));
+      localStorage.setItem('user', JSON.stringify(this.user));
 
       if (router.currentRoute.value.path === '/login') {
         router.push('/home');
@@ -41,6 +48,24 @@ export const useUserStore = defineStore('user', {
       this.user = null;
 
       router.push('/login');
+    },
+
+    upvote(postId) {
+      this.user.upvotes.push(postId);
+    },
+
+    removeUpvote(postId) {
+      const index = this.user.upvotes.indexOf(postId);
+      this.user.upvotes.splice(index, 1);
+    },
+
+    downvote(postId) {
+      this.user.downvotes.push(postId);
+    },
+
+    removeDownvote(postId) {
+      const index = this.user.downvotes.indexOf(postId);
+      this.user.downvotes.splice(index, 1);
     },
   },
 });
