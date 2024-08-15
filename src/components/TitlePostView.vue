@@ -78,4 +78,11 @@ export default {
   font-size: 1.5rem;
   color: var(--font-color);
 }
+
+textarea {
+  margin-bottom: 0.65rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  padding: 0.2rem 1rem 0.2rem 1rem;
+}
 </style>

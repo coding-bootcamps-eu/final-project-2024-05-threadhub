@@ -2,13 +2,13 @@
   <div>
     <header><HomeViewHeader /></header>
     <main>
-      <PostViewMenu @toggle-editing="toggleEditing" />
       <TitlePostView :post="post" :is-edit="isEdit" @update-title="updateTitle" />
       <PostPictureName :userId="post.userId" />
+      <PostViewMenu :userId="post.userId" @toggle-editing="toggleEditing" />
       <PostViewPostContent :post="post" :is-edit="isEdit" @update-text="updateText" />
-      <button v-if="isEdit" @click="savePost">Save Changes</button>
-      <InteraktionPostView :post="post" />
-      <CommentSectionPostView />
+      <div class="save-button"><button v-if="isEdit" @click="savePost">Save Changes</button></div>
+      <InteraktionPostView :post="post" :is-edit="isEdit" />
+      <CommentSectionPostView :isEdit="isEdit" />
     </main>
   </div>
 </template>
@@ -45,7 +45,13 @@ export default {
   },
   methods: {
     toggleEditing() {
-      this.isEdit = !this.isEdit;
+      const user = localStorage.getItem('userId');
+      if (this.post.userId === user) {
+        this.isEdit = !this.isEdit;
+      } else {
+        this.isEdit = false;
+      }
+      return;
     },
     updateTitle(newtitle) {
       this.post.title = newtitle;
@@ -75,4 +81,26 @@ export default {
   },
 };
 </script>
-<style></style>
+<style scoped>
+.save-button {
+  display: flex;
+
+  padding: 1rem;
+  justify-content: center;
+}
+
+button {
+  width: 6rem;
+  height: 1.75rem;
+  font-size: 0.75rem;
+  color: var(--font-color);
+  border: none;
+  border-radius: 10px;
+  background-color: var(--header-color);
+}
+
+button:hover {
+  background-color: var(--background-inputfield);
+  color: black;
+}
+</style>

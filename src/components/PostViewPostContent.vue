@@ -54,12 +54,23 @@ export default {
   color: var(--font-color);
   font-weight: 600;
 
-  height: 10rem;
+  height: 100%;
   padding-left: 1rem;
   padding-right: 1rem;
 }
 .scroll-content {
   height: 100%;
   overflow: auto;
+}
+
+textarea {
+  color: black;
+  font-weight: 400;
+
+  width: 100%;
+  height: 10rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
 }
 </style>

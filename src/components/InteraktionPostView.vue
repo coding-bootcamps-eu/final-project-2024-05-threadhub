@@ -1,6 +1,6 @@
 <template>
   <div class="interaktion">
-    <div class="votes-thread">
+    <div class="votes-thread" v-if="!isEdit">
       <div class="votes" @click="counter++">
         <p>🠕</p>
         <p>{{ post.upvotes }}</p>
@@ -11,7 +11,7 @@
         <p>{{ post.downvotes }}</p>
       </div>
     </div>
-    <button @click="showInput">Senf dazugeben</button>
+    <button v-if="!isEdit" @click="showInput">Senf dazugeben</button>
   </div>
   <form class="comment-section" v-show="showComment">
     <textarea
@@ -33,6 +33,10 @@ export default {
   props: {
     post: {
       type: Object,
+      required: true,
+    },
+    isEdit: {
+      type: Boolean,
       required: true,
     },
   },
