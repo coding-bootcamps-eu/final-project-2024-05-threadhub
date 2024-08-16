@@ -50,7 +50,6 @@ export const useUserStore = defineStore('user', {
       router.push('/login');
     },
 
-
     deletePostFromLocalStorage(postId) {
       let posts = JSON.parse(localStorage.getItem('posts'));
       if (posts) {
@@ -71,6 +70,7 @@ export const useUserStore = defineStore('user', {
       } catch (error) {
         console.error('Error Löschen des Threads:', error);
       }
+    },
 
     upvote(postId) {
       this.user.upvotes.push(postId);
@@ -88,7 +88,6 @@ export const useUserStore = defineStore('user', {
     removeDownvote(postId) {
       const index = this.user.downvotes.indexOf(postId);
       this.user.downvotes.splice(index, 1);
-
     },
   },
 });

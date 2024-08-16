@@ -4,7 +4,7 @@
       <button class="dropdown-button">...</button>
       <div class="dropdown-content">
         <p v-if="showEdit" class="edit" @click="toggleEditMode">edit</p>
-        <p v-if="showEdit">Thread schließen</p>
+        <p v-if="showEdit" @click="closeThread">Thread schließen</p>
         <p>Thread melden</p>
       </div>
     </div>
@@ -26,6 +26,9 @@ export default {
     };
   },
   methods: {
+    closeThread() {
+      this.$emit('close-thread');
+    },
     toggleEditMode() {
       this.$emit('toggle-editing');
     },
