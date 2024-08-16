@@ -1,19 +1,32 @@
 <template>
   <div class="post-list-container">
     <div class="post" v-for="post of posts" :key="post.id">
-      <p class="title">{{ post.title }}</p>
       <div class="tags-container">
         <p class="tags" v-for="tag in post.tags" :key="tag">{{ tag }}</p>
       </div>
+      <div class="post-header">
+        <p class="title">{{ post.title }}</p>
+        <button @click="confirmDelete(post.id)" class="delete-button">Löschen</button>
+      </div>
+    </div>
+  </div>
+  <div v-if="showConfirmation" class="popup-confirm">
+    <div class="popup">
+      <p>Möchten sie diesen Thead wirklich löschen ?</p>
+      <button @click="deletePost" class="confirm-button">Ja</button>
+      <button @click="cancelDelete" class="cancel-button">Nein</button>
     </div>
   </div>
 </template>
 <script>
+import { useUserStore } from '@/stores/user';
 export default {
   data() {
     return {
       posts: [],
       filterMyPost: [],
+      postIdToDelete: null,
+      showConfirmation: false,
     };
   },
   async created() {
@@ -25,6 +38,31 @@ export default {
     const filterPost = data.filter((post) => post.userId === userId);
 
     this.posts = filterPost;
+  },
+
+  methods: {
+    confirmDelete(postId) {
+      this.postIdToDelete = postId;
+      this.showConfirmation = true;
+    },
+    async deletePost() {
+      const userStore = useUserStore();
+
+      try {
+        await userStore.deletePost(this.postIdToDelete);
+
+        this.$emit('delete-post', this.postIdToDelete);
+      } catch (error) {
+        alert('Es gab ein problem beim löschen des Thread.');
+      } finally {
+        this.showConfirmation = false;
+        this.postIdToDelete = null;
+      }
+    },
+    cancelDelete() {
+      this.showConfirmation = false;
+      this.postIdToDelete = null;
+    },
   },
 };
 </script>
@@ -70,5 +108,56 @@ export default {
   padding: 0.15rem 0.35rem;
   border-radius: 10px;
   margin: 0;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.2rem 0.8rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.popup-confirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+.confirm-button {
+  background-color: #28a745;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+.cancel-button {
+  background-color: red;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.post-header {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
 }
 </style>

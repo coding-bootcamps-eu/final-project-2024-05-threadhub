@@ -50,6 +50,28 @@ export const useUserStore = defineStore('user', {
       router.push('/login');
     },
 
+
+    deletePostFromLocalStorage(postId) {
+      let posts = JSON.parse(localStorage.getItem('posts'));
+      if (posts) {
+        posts = posts.filter((post) => post.id !== postId);
+        localStorage.setItem('posts', JSON.stringify(posts));
+      }
+    },
+    async deletePost(postId) {
+      try {
+        const res = await fetch(`${this.api}posts/${postId}`, {
+          method: 'DELETE',
+        });
+        if (!res.ok) {
+          throw new Error('Fehler beim Löschen des thread in der API');
+        }
+
+        this.deletePostFromLocalStorage(postId);
+      } catch (error) {
+        console.error('Error Löschen des Threads:', error);
+      }
+
     upvote(postId) {
       this.user.upvotes.push(postId);
     },
@@ -66,6 +88,7 @@ export const useUserStore = defineStore('user', {
     removeDownvote(postId) {
       const index = this.user.downvotes.indexOf(postId);
       this.user.downvotes.splice(index, 1);
+
     },
   },
 });
