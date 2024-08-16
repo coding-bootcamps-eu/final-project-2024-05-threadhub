@@ -1,8 +1,14 @@
 <template>
   <div class="post-content-container">
-    <div class="scroll-content">
+    <div class="scroll-content" v-if="!isEdit" @click="toggleEditing">
       {{ post.text }}
     </div>
+    <textarea
+      v-if="isEdit"
+      v-model="editText"
+      @blur="emitUpdateTitle"
+      @keyup.enter="emitUpdateTitle"
+    ></textarea>
   </div>
 </template>
 
@@ -13,6 +19,32 @@ export default {
       type: Object,
       required: true,
     },
+    isEdit: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      editText: '',
+    };
+  },
+  watch: {
+    isEdit(newVal) {
+      if (newVal) {
+        this.editTitle = this.post.text;
+      }
+    },
+  },
+  methods: {
+    emitUpdateTitle() {
+      this.$emit('update-text', this.editText);
+    },
+    toggleEditing() {
+      if (this.isEditing) {
+        this.$emit('update-text', this.editText);
+      }
+    },
   },
 };
 </script>
@@ -22,7 +54,7 @@ export default {
   color: var(--font-color);
   font-weight: 600;
 
-  height: 10rem;
+  height: 100%;
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -30,5 +62,16 @@ export default {
   height: 100%;
   overflow: auto;
   word-break: break-all;
+}
+
+textarea {
+  color: black;
+  font-weight: 400;
+
+  width: 100%;
+  height: 10rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
 }
 </style>

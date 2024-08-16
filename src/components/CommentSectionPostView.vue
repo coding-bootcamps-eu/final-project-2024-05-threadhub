@@ -1,5 +1,5 @@
 <template>
-  <div class="click-comment">
+  <div v-if="!isEdit" class="click-comment">
     <p @click="showContainBox">Kommentare folgen hier...</p>
   </div>
   <div class="comments" v-show="showComments">
@@ -23,6 +23,9 @@
 </template>
 <script>
 export default {
+  props: {
+    isEdit: Boolean,
+  },
   data() {
     return {
       showComments: false,

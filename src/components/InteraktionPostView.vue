@@ -1,5 +1,6 @@
 <template>
   <div class="interaktion">
+
     <div class="votes-thread">
       <button class="votes" @click="upvotePost" :disabled="canUpvote === false">
         <p>⬆️</p>
@@ -11,7 +12,7 @@
         <p>{{ downs }}</p>
       </button>
     </div>
-    <button @click="showInput">Senf dazugeben</button>
+    <button v-if="!isEdit" @click="showInput">Senf dazugeben</button>
   </div>
   <form class="comment-section" v-show="showComment" @submit.prevent="submitComment">
     <textarea
@@ -33,7 +34,17 @@
 import { useUserStore } from '@/stores/user';
 
 export default {
-  props: { post: { type: Object, required: true } },
+  props: {
+    post: {
+      type: Object,
+      required: true,
+    },
+    isEdit: {
+      type: Boolean,
+      required: true,
+    },
+  },
+
   data() {
     return {
       store: useUserStore(),
