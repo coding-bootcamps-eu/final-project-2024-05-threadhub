@@ -1,19 +1,20 @@
 <template>
   <div class="interaktion">
-    <div class="votes-thread" v-if="!isEdit">
-      <div class="votes" @click="counter++">
-        <p>🠕</p>
-        <p>{{ post.upvotes }}</p>
-      </div>
 
-      <div class="votes" @click="down++">
-        <p>🠗</p>
-        <p>{{ post.downvotes }}</p>
-      </div>
+    <div class="votes-thread">
+      <button class="votes" @click="upvotePost" :disabled="canUpvote === false">
+        <p>⬆️</p>
+        <p>{{ ups }}</p>
+      </button>
+
+      <button class="votes" @click="downvotePost" :disabled="canDownvote === false">
+        <p>⬇️</p>
+        <p>{{ downs }}</p>
+      </button>
     </div>
     <button v-if="!isEdit" @click="showInput">Senf dazugeben</button>
   </div>
-  <form class="comment-section" v-show="showComment">
+  <form class="comment-section" v-show="showComment" @submit.prevent="submitComment">
     <textarea
       v-model="userInput"
       maxlength="2000"
@@ -28,7 +29,10 @@
     </div>
   </form>
 </template>
+
 <script>
+import { useUserStore } from '@/stores/user';
+
 export default {
   props: {
     post: {
@@ -40,15 +44,35 @@ export default {
       required: true,
     },
   },
+
   data() {
     return {
+      store: useUserStore(),
       showComment: false,
-      counter: 0,
-      down: 0,
+      ups: 0,
+      downs: 0,
       charLength: 2000,
       userInput: '',
     };
   },
+
+  computed: {
+    canUpvote() {
+      return this.store.user.upvotes.includes(this.post.id) === false;
+    },
+
+    canDownvote() {
+      return this.store.user.downvotes.includes(this.post.id) === false;
+    },
+
+    // ups() {
+    //   return this.post.upvotes;
+    // },
+    // downs() {
+    //   return this.post.downvotes;
+    // },
+  },
+
   methods: {
     showInput() {
       this.showComment = !this.showComment;
@@ -56,9 +80,28 @@ export default {
     maxCharLength() {
       return this.charLength - this.userInput.length;
     },
+
+    upvotePost() {
+      if (this.canDownvote === false) {
+        this.store.removeDownvote(this.post.id);
+        this.downs--;
+      }
+      this.ups++;
+      this.store.upvote(this.post.id);
+    },
+
+    downvotePost() {
+      if (this.canUpvote === false) {
+        this.store.removeUpvote(this.post.id);
+        this.ups--;
+      }
+      this.downs++;
+      this.store.downvote(this.post.id);
+    },
   },
 };
 </script>
+
 <style scoped>
 .votes-thread {
   display: flex;
@@ -88,7 +131,6 @@ export default {
 }
 
 .interaktion Button {
-  width: 6rem;
   height: 1.75rem;
   font-size: 0.68rem;
   color: var(--font-color);
@@ -140,6 +182,7 @@ export default {
   height: 1.75rem;
 
   background-color: var(--header-color);
+
   color: var(--font-color);
 
   border-radius: 8px;
@@ -148,5 +191,9 @@ export default {
 
 .button-section button:active {
   background-color: var(--background-color);
+}
+
+[disabled] {
+  opacity: 0.5;
 }
 </style>
