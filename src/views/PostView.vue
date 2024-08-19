@@ -62,8 +62,6 @@ export default {
       const user = localStorage.getItem('userId');
       if (this.post.userId === user) {
         this.isEdit = !this.isEdit;
-      } else {
-        this.isEdit = false;
       }
       return;
     },

@@ -33,21 +33,27 @@ export default {
       password: '',
       errorMessages: 'Benutzername oder Passwort ist falsch!',
       showErrorMassages: false,
+      user: {},
     };
+  },
+  computed: {
+    isAdmin() {
+      return !('isAdmin' in this.user);
+    },
   },
   methods: {
     async checkUser() {
       const response = await fetch('http://localhost:3000/users');
       const users = await response.json();
-
       const foundUser = users.find(
         (user) => user.username === this.username && user.password === this.password,
       );
+      this.user = foundUser;
+      this.checkAdmin();
 
       if (foundUser) {
         localStorage.setItem('userId', foundUser.id);
         console.log(foundUser);
-
         const userStore = useUserStore();
         console.log(userStore);
         await userStore.getUserInfo();
@@ -58,6 +64,13 @@ export default {
         this.showErrorMassages = true;
         this.username = '';
         this.password = '';
+      }
+    },
+    checkAdmin() {
+      if (this.isAdmin) {
+        localStorage.setItem('isAdmin', null);
+      } else {
+        localStorage.setItem('isAdmin', false);
       }
     },
   },
