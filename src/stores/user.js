@@ -6,6 +6,7 @@ export const useUserStore = defineStore('user', {
     return {
       user: JSON.parse(localStorage.getItem('user')) || null,
       api: import.meta.env.VITE_API_URL,
+      editDisabled: false,
     };
   },
 
@@ -50,6 +51,14 @@ export const useUserStore = defineStore('user', {
       router.push('/login');
     },
 
+    setEditDisabled(value) {
+      this.editDisabled = value;
+      localStorage.setItem('editDisabled', JSON.stringify(this.editDisabled));
+    },
+
+    resetEditDisabled() {
+      this.editDisabled = false;
+    },
 
     deletePostFromLocalStorage(postId) {
       let posts = JSON.parse(localStorage.getItem('posts'));
@@ -71,6 +80,7 @@ export const useUserStore = defineStore('user', {
       } catch (error) {
         console.error('Error Löschen des Threads:', error);
       }
+    },
 
     upvote(postId) {
       this.user.upvotes.push(postId);
@@ -88,7 +98,6 @@ export const useUserStore = defineStore('user', {
     removeDownvote(postId) {
       const index = this.user.downvotes.indexOf(postId);
       this.user.downvotes.splice(index, 1);
-
     },
   },
 });
