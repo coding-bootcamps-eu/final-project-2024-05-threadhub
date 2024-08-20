@@ -6,6 +6,7 @@ export const useUserStore = defineStore('user', {
     return {
       user: JSON.parse(localStorage.getItem('user')) || null,
       api: import.meta.env.VITE_API_URL,
+      editDisabled: false,
     };
   },
 
@@ -48,6 +49,15 @@ export const useUserStore = defineStore('user', {
       this.user = null;
 
       router.push('/login');
+    },
+
+    setEditDisabled(value) {
+      this.editDisabled = value;
+      localStorage.setItem('editDisabled', JSON.stringify(this.editDisabled));
+    },
+
+    resetEditDisabled() {
+      this.editDisabled = false;
     },
 
     deletePostFromLocalStorage(postId) {
