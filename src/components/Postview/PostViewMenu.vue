@@ -4,7 +4,7 @@
       <button class="dropdown-button" @click="toggleMenu">...</button>
       <div v-if="menuVisible" class="dropdown-content">
         <p v-if="showEdit" class="edit" @click="handleEditClick">edit</p>
-        <p v-if="showEdit">Thread schließen</p>
+        <p v-if="showEdit" @click="closeThread()">Thread schließen</p>
         <p>Thread melden</p>
       </div>
     </div>
@@ -19,7 +19,7 @@
 export default {
   props: {
     userId: null,
-    postId: null,
+    post: null,
   },
   data() {
     return {
@@ -29,26 +29,13 @@ export default {
     };
   },
 
-  mounted() {
-    this.loadPostTimestamp();
-  },
-
   methods: {
-    loadPostTimestamp() {
-      const storedTimestamp = localStorage.getItem(`postTimestamp_${this.postId}`);
-      if (storedTimestamp) {
-        this.postTimestamp = parseInt(storedTimestamp, 10);
-      } else {
-        this.postTimestamp = Date.now();
-        localStorage.setItem(`postTimestamp_${this.postId}`, this.postTimestamp);
-      }
-    },
-
     handleEditClick() {
       const currentTime = Date.now();
-      const timeElapsed = (currentTime - this.postTimestamp) / 6000;
-
-      if (timeElapsed > 60) {
+      const timeElapsed = (currentTime - this.post.createdAt) / 6000;
+      console.log(currentTime);
+      console.log(timeElapsed);
+      if (timeElapsed > 10) {
         this.showPopup = true;
       } else {
         this.toggleEditMode();
@@ -69,11 +56,6 @@ export default {
 
     toggleMenu() {
       this.menuVisible = !this.menuVisible;
-    },
-
-    newPOST() {
-      this.postTimestamp = Date.now();
-      localStorage.setItem(`postTimestamp_${this.postId}`, this.postTimestamp);
     },
   },
 
