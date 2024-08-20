@@ -3,6 +3,7 @@
     <p>
       <strong>{{ dateFormat }}</strong>
     </p>
+    <p v-if="isClosed">(GESCHLOSSEN)</p>
     <h2 v-if="!isEdit" @click="toggleEditing">{{ post.title }}</h2>
     <textarea
       v-if="isEdit"
@@ -24,6 +25,7 @@ export default {
       type: Boolean,
       required: true,
     },
+    isClosed: Boolean,
   },
   data() {
     return {

@@ -55,6 +55,10 @@ export default {
       }
     },
 
+    closeThread() {
+      this.$emit('close-thread');
+    },
+
     toggleEditMode() {
       this.$emit('toggle-editing');
     },

@@ -2,12 +2,21 @@
   <div>
     <header><HomeViewHeader /></header>
     <main>
-      <TitlePostView :post="post" :is-edit="isEdit" @update-title="updateTitle" />
+      <TitlePostView
+        :post="post"
+        :is-closed="isClosed"
+        :is-edit="isEdit"
+        @update-title="updateTitle"
+      />
       <PostPictureName :userId="post.userId" />
-      <PostViewMenu :userId="post.userId" @toggle-editing="toggleEditing" />
+      <PostViewMenu
+        :userId="post.userId"
+        @toggle-editing="toggleEditing"
+        @close-thread="closeThread"
+      />
       <PostViewPostContent :post="post" :is-edit="isEdit" @update-text="updateText" />
       <div class="save-button"><button v-if="isEdit" @click="savePost">Save Changes</button></div>
-      <InteraktionPostView :post="post" :is-edit="isEdit" />
+      <InteraktionPostView :is-closed="isClosed" :post="post" :is-edit="isEdit" />
       <CommentSectionPostView :isEdit="isEdit" />
     </main>
   </div>
@@ -15,12 +24,12 @@
 
 <script>
 import HomeViewHeader from '@/components/HomeViewHeader.vue';
-import TitlePostView from '@/components/TitlePostView.vue';
-import PostViewPostContent from '@/components/PostViewPostContent.vue';
-import CommentSectionPostView from '@/components/CommentSectionPostView.vue';
-import PostPictureName from '@/components/PostPictureName.vue';
-import InteraktionPostView from '@/components/InteraktionPostView.vue';
-import PostViewMenu from '@/components/PostViewMenu.vue';
+import TitlePostView from '@/components/Postview/TitlePostView.vue';
+import PostViewPostContent from '@/components/Postview/PostViewPostContent.vue';
+import CommentSectionPostView from '@/components/Postview/CommentSectionPostView.vue';
+import PostPictureName from '@/components/Postview/PostPictureName.vue';
+import InteraktionPostView from '@/components/Postview/InteraktionPostView.vue';
+import PostViewMenu from '@/components/Postview/PostViewMenu.vue';
 export default {
   components: {
     HomeViewHeader,
@@ -41,15 +50,18 @@ export default {
     return {
       post: {},
       isEdit: false,
+      isClosed: null,
     };
   },
   methods: {
+    closeThread() {
+      this.isClosed = !this.isClosed;
+      localStorage.setItem('isClosed', JSON.stringify(this.isClosed));
+    },
     toggleEditing() {
       const user = localStorage.getItem('userId');
       if (this.post.userId === user) {
         this.isEdit = !this.isEdit;
-      } else {
-        this.isEdit = false;
       }
       return;
     },
@@ -78,6 +90,8 @@ export default {
     const response = await fetch(import.meta.env.VITE_API_URL + `posts/${this.postId}`);
     this.post = await response.json();
     console.log(this.post);
+
+    this.isClosed = JSON.parse(localStorage.getItem('isClosed'));
   },
 };
 </script>

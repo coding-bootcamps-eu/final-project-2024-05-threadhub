@@ -1,7 +1,6 @@
 <template>
   <div class="interaktion">
-
-    <div class="votes-thread">
+    <div class="votes-thread" v-if="!isEdit">
       <button class="votes" @click="upvotePost" :disabled="canUpvote === false">
         <p>⬆️</p>
         <p>{{ ups }}</p>
@@ -12,7 +11,7 @@
         <p>{{ downs }}</p>
       </button>
     </div>
-    <button v-if="!isEdit" @click="showInput">Senf dazugeben</button>
+    <button v-if="!isEdit" v-show="!isClosed" @click="showInput">Senf dazugeben</button>
   </div>
   <form class="comment-section" v-show="showComment" @submit.prevent="submitComment">
     <textarea
@@ -43,6 +42,7 @@ export default {
       type: Boolean,
       required: true,
     },
+    isClosed: Boolean,
   },
 
   data() {
