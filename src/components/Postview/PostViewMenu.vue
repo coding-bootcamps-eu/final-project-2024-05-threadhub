@@ -9,7 +9,7 @@
       </div>
     </div>
     <div v-if="showPopup" class="popup">
-      <p>Bearbeitung nicht mehr möglich.</p>
+      <p>Bearbeitung nicht mehr möglich. Zeit abgelaufen!</p>
       <button @click="closePopup">OK</button>
     </div>
   </div>
