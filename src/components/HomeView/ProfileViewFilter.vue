@@ -51,7 +51,7 @@
   </section>
 </template>
 <script>
-import CreatePostContainer from './CreatePostContainer.vue';
+import CreatePostContainer from '@/components/HomeView/CreatePostContainer.vue';
 
 export default {
   components: {
