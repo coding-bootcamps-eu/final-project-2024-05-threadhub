@@ -13,6 +13,7 @@
         :userId="post.userId"
         @toggle-editing="toggleEditing"
         @close-thread="closeThread"
+        :post="post"
       />
       <PostViewPostContent :post="post" :is-edit="isEdit" @update-text="updateText" />
       <div class="save-button"><button v-if="isEdit" @click="savePost">Save Changes</button></div>
