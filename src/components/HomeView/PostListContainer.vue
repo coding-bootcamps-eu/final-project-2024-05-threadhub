@@ -8,8 +8,17 @@
           {{ tag }}
         </div>
       </div>
-      <div v-if="adminChoice()" class="btn-delete" @click="onPostDelete(post.id)">
+      <div v-if="adminChoice()" class="btn-delete" @click="toggleDelete(post.id)">
         <button>x</button>
+      </div>
+    </div>
+    <div class="popup" v-if="deleteDiv">
+      <div class="delete-popup">
+        <p>Are u sure?</p>
+        <div>
+          <button class="yes" @click="clickToDelete">Yes</button>
+          <button class="no" @click="deleteDiv = false">No</button>
+        </div>
       </div>
     </div>
   </div>
@@ -20,6 +29,8 @@ export default {
   data() {
     return {
       admin: JSON.parse(localStorage.getItem('isAdmin')),
+      deleteDiv: false,
+      deleteId: null,
     };
   },
   props: {
@@ -28,6 +39,10 @@ export default {
     wordSearch: String,
   },
   methods: {
+    toggleDelete(postId) {
+      this.deleteDiv = !this.deleteDiv;
+      this.deleteId = postId;
+    },
     linkMyPost(postId) {
       this.$router.push(`post/${postId}`);
     },
@@ -41,6 +56,10 @@ export default {
     },
     onPostDelete(postId) {
       this.$emit('postDelete', postId);
+    },
+    clickToDelete() {
+      this.onPostDelete(this.deleteId);
+      this.deleteDiv = !this.deleteDiv;
     },
   },
   computed: {
@@ -134,5 +153,56 @@ export default {
   cursor: crosshair;
 
   color: var(--font-color);
+}
+
+.popup {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+  top: 0;
+  left: 0;
+}
+
+.delete-popup {
+  width: 60%;
+  height: 30%;
+
+  background-color: var(--header-color);
+  border-radius: 10px;
+  border: 2px solid var(--background-inputfield);
+  box-shadow: 1px 0px 8px 2px black;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-popup p {
+  font-size: 2rem;
+  margin-top: -0.5rem;
+
+  color: var(--font-color);
+}
+
+.delete-popup div {
+  display: flex;
+  gap: 1rem;
+}
+
+.delete-popup button {
+  width: 5.5rem;
+  height: 2.5rem;
+
+  font-size: 1.5rem;
+  color: var(--header-color);
+
+  background-color: var(--background-inputfield);
+  border-radius: 10px;
 }
 </style>
