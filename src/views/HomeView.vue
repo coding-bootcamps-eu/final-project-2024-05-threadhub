@@ -8,14 +8,19 @@
         @postCreated="fetchPosts"
       />
     </div>
-    <PostListContainer :posts="posts" :selectedFilter="selectedFilter" :wordSearch="wordSearch" />
+    <PostListContainer
+      :posts="posts"
+      :selectedFilter="selectedFilter"
+      :wordSearch="wordSearch"
+      @postDelete="postDelete"
+    />
   </div>
 </template>
 
 <script>
 import HomeViewHeader from '@/components/HomeViewHeader.vue';
-import ProfileViewFilter from '@/components/ProfileViewFilter.vue';
-import PostListContainer from '@/components/PostListContainer.vue';
+import ProfileViewFilter from '@/components/HomeView/ProfileViewFilter.vue';
+import PostListContainer from '@/components/HomeView/PostListContainer.vue';
 
 export default {
   data() {
@@ -30,6 +35,12 @@ export default {
     async fetchPosts() {
       const response = await fetch(this.apiUrl + 'posts');
       this.posts = await response.json();
+    },
+    async postDelete(postId) {
+      await fetch(`${this.apiUrl}posts/${postId}`, {
+        method: 'DELETE',
+      });
+      await this.fetchPosts();
     },
 
     updateWordSearch(word) {
