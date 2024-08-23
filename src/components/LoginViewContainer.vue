@@ -36,11 +36,7 @@ export default {
       user: {},
     };
   },
-  computed: {
-    isAdmin() {
-      return !('isAdmin' in this.user);
-    },
-  },
+
   methods: {
     async checkUser() {
       const response = await fetch('http://localhost:3000/users');
@@ -49,7 +45,7 @@ export default {
         (user) => user.username === this.username && user.password === this.password,
       );
       this.user = foundUser;
-      this.checkAdmin();
+      // this.checkAdmin();
 
       if (foundUser) {
         localStorage.setItem('userId', foundUser.id);
@@ -66,13 +62,13 @@ export default {
         this.password = '';
       }
     },
-    checkAdmin() {
-      if (this.isAdmin) {
-        localStorage.setItem('isAdmin', null);
-      } else {
-        localStorage.setItem('isAdmin', false);
-      }
-    },
+    // checkAdmin() {
+    //   if (this.isAdmin) {
+    //     localStorage.setItem('isAdmin', true);
+    //   } else {
+    //     localStorage.setItem('isAdmin', false);
+    //   }
+    // },
   },
 };
 </script>

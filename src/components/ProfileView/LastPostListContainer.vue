@@ -8,15 +8,7 @@
       </div>
       <div class="post-header">
         <div class="title">{{ post.title }}</div>
-        <button @click="confirmDelete(post.id)" class="delete-button">Löschen</button>
       </div>
-    </div>
-  </div>
-  <div v-if="showConfirmation" class="popup-confirm">
-    <div class="popup">
-      <p>Möchten sie diesen Thead wirklich löschen ?</p>
-      <button @click="deletePost" class="confirm-button">Ja</button>
-      <button @click="cancelDelete" class="cancel-button">Nein</button>
     </div>
   </div>
 </template>

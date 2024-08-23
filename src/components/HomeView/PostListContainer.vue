@@ -28,7 +28,6 @@
 export default {
   data() {
     return {
-      admin: JSON.parse(localStorage.getItem('isAdmin')),
       deleteDiv: false,
       deleteId: null,
     };
@@ -47,12 +46,12 @@ export default {
       this.$router.push(`post/${postId}`);
     },
     adminChoice() {
-      if (this.admin === false) {
-        return false;
-      } else if (this.admin === null) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user.isAdmin === true) {
         return true;
+      } else {
+        return false;
       }
-      return;
     },
     onPostDelete(postId) {
       this.$emit('postDelete', postId);
