@@ -1,9 +1,12 @@
 <template>
   <div class="container">
-    <HomeViewHeader />
+    <div class="header"><HomeViewHeader /></div>
     <ProfileViewHeader />
-    <ProfileViewStatus :totalVotes="totalVotes" :totalPosts="totalPosts" />
-    <LastPostListContainer :filteredPosts="idFilterPost" />
+    <div class="profil-container">
+      <ProfileViewStatus :totalVotes="totalVotes" :totalPosts="totalPosts" />
+
+      <div class="last-post"><LastPostListContainer :filteredPosts="idFilterPost" /></div>
+    </div>
   </div>
 </template>
 
@@ -54,6 +57,23 @@ export default {
 
 <style scoped>
 .container {
+  display: flex;
+  flex-direction: column;
   position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.profil-container {
+  display: contents;
+}
+
+.header {
+  width: 100%;
+}
+
+.last-post {
+  display: contents;
 }
 </style>

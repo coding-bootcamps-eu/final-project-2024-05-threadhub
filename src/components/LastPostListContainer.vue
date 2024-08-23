@@ -8,7 +8,6 @@
       </div>
       <div class="post-header">
         <div class="title">{{ post.title }}</div>
-        <button @click="confirmDelete(post.id)" class="delete-button">Löschen</button>
       </div>
     </div>
   </div>
@@ -69,6 +68,8 @@ export default {
   background-color: var(--header-color);
   border-radius: 10px;
   height: 300px;
+  width: 90%;
+  max-width: 550px;
   overflow-y: auto;
   margin: 2.2rem;
 }

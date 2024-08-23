@@ -39,6 +39,7 @@ export default {
 <style scoped>
 .header {
   background-color: var(--background-color);
+  max-width: 700px;
 }
 
 .cover {
@@ -75,5 +76,6 @@ p {
   transform: translate(-50%, -50%);
   top: 80%;
   font-size: 1.5rem;
+  margin-top: 2rem;
 }
 </style>

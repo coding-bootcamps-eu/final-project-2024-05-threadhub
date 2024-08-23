@@ -30,11 +30,12 @@ export default {
 
 <style scoped>
 .container {
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
+  max-width: 690px;
 }
 
 .profile-status-container {
