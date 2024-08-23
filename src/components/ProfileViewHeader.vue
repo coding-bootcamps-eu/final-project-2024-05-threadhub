@@ -39,7 +39,7 @@ export default {
 <style scoped>
 .header {
   background-color: var(--background-color);
-  max-width: 700px;
+  max-width: 600px;
 }
 
 .cover {
