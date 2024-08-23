@@ -86,6 +86,7 @@ export default {
   flex-direction: column;
   margin: 2rem;
   background-color: var(--header-color);
+  max-width: 320px;
 }
 .login-username {
   margin-bottom: 2rem;

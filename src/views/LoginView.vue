@@ -3,7 +3,7 @@
     <header>
       <img src="/src/assets/images/logos.png" width="350px" alt="threadhublogo" />
     </header>
-    <div><LoginViewContainer /></div>
+    <div class="login-container"><LoginViewContainer /></div>
   </div>
 </template>
 
@@ -17,8 +17,21 @@ export default {
 </script>
 
 <style scoped>
+#login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 header {
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 </style>
