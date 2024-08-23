@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import LastPostListContainer from '@/components/LastPostListContainer.vue';
-import ProfileViewHeader from '@/components/ProfileViewHeader.vue';
-import ProfileViewStatus from '@/components/ProfileViewStatus.vue';
+import LastPostListContainer from '@/components/ProfileView/LastPostListContainer.vue';
+import ProfileViewHeader from '@/components/ProfileView/ProfileViewHeader.vue';
+import ProfileViewStatus from '@/components/ProfileView/ProfileViewStatus.vue';
 import HomeViewHeader from '@/components/HomeViewHeader.vue';
 
 export default {

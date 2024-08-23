@@ -18,7 +18,7 @@
       <PostViewPostContent :post="post" :is-edit="isEdit" @update-text="updateText" />
       <div class="save-button"><button v-if="isEdit" @click="savePost">Save Changes</button></div>
       <InteraktionPostView :is-closed="isClosed" :post="post" :is-edit="isEdit" />
-      <CommentSectionPostView :isEdit="isEdit" />
+      <CommentSectionPostView :isEdit="isEdit" :postId="post.id" />
     </main>
   </div>
 </template>

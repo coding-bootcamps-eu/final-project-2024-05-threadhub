@@ -3,21 +3,9 @@
     <p @click="showContainBox">Kommentare folgen hier...</p>
   </div>
   <div class="comments" v-show="showComments">
-    <div class="on-comment">
-      <p>Der folgende Kommentar der zu dem Thema passt.</p>
-      <p class="user">username</p>
-    </div>
-    <div class="on-comment">
-      <p>Der folgende Kommentar der zu dem Thema passt.</p>
-      <p class="user">username</p>
-    </div>
-    <div class="on-comment">
-      <p>Der folgende Kommentar der zu dem Thema passt.</p>
-      <p class="user">username</p>
-    </div>
-    <div class="on-comment">
-      <p>Der folgende Kommentar der zu dem Thema passt.</p>
-      <p class="user">username</p>
+    <div class="on-comment" v-for="comment in comments" :key="comment.id">
+      <p>{{ comment.text }}</p>
+      <p class="user">{{ comment.username }}</p>
     </div>
   </div>
 </template>
@@ -25,16 +13,44 @@
 export default {
   props: {
     isEdit: Boolean,
+    postId: String,
   },
   data() {
     return {
       showComments: false,
+      comments: null,
+      user: null,
     };
   },
   methods: {
     showContainBox() {
       this.showComments = !this.showComments;
+      // console.log(this.comments);
     },
+  },
+  async created() {
+    // const res = await fetch(import.meta.env.VITE_API_URL + `comments`);
+    // const data = await res.json();
+    // // console.log(data);
+    // const filter = data.filter((comment) => comment.postId === this.postId);
+    // this.comments = filter;
+    // // console.log(this.comments);
+    const res = await fetch(import.meta.env.VITE_API_URL + `comments`);
+    const data = await res.json();
+
+    const filteredComments = data.filter((comment) => comment.postId === this.postId);
+
+    const response = await fetch(import.meta.env.VITE_API_URL + `users`);
+    const file = await response.json();
+    const commentsWithUsernames = filteredComments.map((comment) => {
+      const user = file.find((user) => user.id === comment.userId);
+      return {
+        ...comment,
+        username: user ? user.username : 'Unbekannt',
+      };
+    });
+    this.comments = commentsWithUsernames;
+    this.user = file;
   },
 };
 </script>
@@ -42,6 +58,8 @@ export default {
 .click-comment {
   color: var(--font-color);
   padding-left: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .comments {
