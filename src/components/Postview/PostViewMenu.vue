@@ -4,7 +4,7 @@
       <button class="dropdown-button" @click="toggleMenu">...</button>
       <div v-if="menuVisible" class="dropdown-content">
         <p v-if="showEdit" class="edit" @click="handleEditClick">edit</p>
-        <p v-if="showEdit" @click="closeThread()">Thread schließen</p>
+        <p v-if="showEdit" @click="closeThread">Thread schließen</p>
         <p>Thread melden</p>
       </div>
     </div>
@@ -32,10 +32,10 @@ export default {
   methods: {
     handleEditClick() {
       const currentTime = Date.now();
-      const timeElapsed = (currentTime - this.post.createdAt) / 6000;
+      const timeElapsed = (currentTime - this.post.createdAt) / 1000 / 60;
       console.log(currentTime);
       console.log(timeElapsed);
-      if (timeElapsed > 10) {
+      if (timeElapsed > 1) {
         this.showPopup = true;
       } else {
         this.toggleEditMode();

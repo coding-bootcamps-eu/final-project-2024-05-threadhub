@@ -113,6 +113,7 @@ export default {
   grid-column-start: 1;
   grid-column-end: 3;
   font-size: 1.25rem;
+  cursor: pointer;
 }
 
 .tags-container {
@@ -149,7 +150,7 @@ export default {
   border: 2px solid var(--background-color);
   border-radius: 8px;
 
-  cursor: crosshair;
+  cursor: pointer;
 
   color: var(--font-color);
 }
@@ -203,5 +204,14 @@ export default {
 
   background-color: var(--background-inputfield);
   border-radius: 10px;
+}
+
+@media (min-width: 900px) and (max-width: 1920px) {
+  .post-container {
+    min-height: 800px;
+  }
+  .delete-popup {
+    width: 20%;
+  }
 }
 </style>
