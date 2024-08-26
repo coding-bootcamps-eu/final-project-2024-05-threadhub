@@ -76,7 +76,7 @@ export default {
   max-height: 70vh;
 }
 
-@media (min-width: 1000px) and (max-width: 1920px) {
+@media (min-width: 900px) {
   .filter {
     display: flex;
     flex-direction: column;
