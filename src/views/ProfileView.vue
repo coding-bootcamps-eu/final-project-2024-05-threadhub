@@ -2,8 +2,10 @@
   <div class="container">
     <HomeViewHeader />
     <ProfileViewHeader />
-    <ProfileViewStatus :totalVotes="totalVotes" :totalPosts="totalPosts" />
-    <LastPostListContainer :filteredPosts="idFilterPost" />
+    <div class="content">
+      <ProfileViewStatus :totalVotes="totalVotes" :totalPosts="totalPosts" />
+      <LastPostListContainer :filteredPosts="idFilterPost" />
+    </div>
   </div>
 </template>
 
@@ -55,5 +57,8 @@ export default {
 <style scoped>
 .container {
   position: relative;
+}
+.content {
+  margin: 1rem;
 }
 </style>
