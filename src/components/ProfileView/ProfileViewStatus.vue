@@ -35,6 +35,9 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-content: center;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 .profile-status-container {

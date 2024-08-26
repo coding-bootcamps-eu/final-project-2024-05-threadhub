@@ -109,12 +109,22 @@ section {
   border-radius: 10px;
 
   background-color: var(--background-inputfield);
+  cursor: pointer;
 }
 
 .post-filter {
   display: flex;
   padding: 1rem 1rem 0 1rem;
   justify-content: center;
+}
+
+#search-filter {
+  background-color: var(--background-inputfield);
+  border: none;
+  border-radius: 10px;
+  width: 12rem;
+  height: 1.5rem;
+  padding-left: 0.75rem;
 }
 
 form input {
@@ -146,5 +156,13 @@ form input:checked + label {
 
 button:active {
   background-color: var(--background-color);
+}
+
+@media (min-width: 1000px) and (max-width: 1920px) {
+  #search-filter {
+    width: 20rem;
+    height: 2rem;
+    font-size: 1.5rem;
+  }
 }
 </style>

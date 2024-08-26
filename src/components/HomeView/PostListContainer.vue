@@ -92,7 +92,7 @@ export default {
   border-radius: 1.3rem;
 
   overflow-y: auto;
-  margin: 1rem;
+  margin: 1rem 1rem 0 1rem;
 }
 .post {
   display: grid;
@@ -113,6 +113,7 @@ export default {
   grid-column-start: 1;
   grid-column-end: 3;
   font-size: 1.25rem;
+  cursor: pointer;
 }
 
 .tags-container {
@@ -149,7 +150,7 @@ export default {
   border: 2px solid var(--background-color);
   border-radius: 8px;
 
-  cursor: crosshair;
+  cursor: pointer;
 
   color: var(--font-color);
 }
@@ -203,5 +204,16 @@ export default {
 
   background-color: var(--background-inputfield);
   border-radius: 10px;
+}
+
+@media (min-width: 900px) {
+  .post-list-container {
+    min-height: 800px;
+    max-width: 1000px;
+    margin: 1rem auto 1rem auto;
+  }
+  .delete-popup {
+    width: 20%;
+  }
 }
 </style>

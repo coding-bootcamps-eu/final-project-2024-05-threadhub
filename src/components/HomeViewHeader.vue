@@ -78,11 +78,24 @@ img {
   display: block;
 }
 
+.dropdown-content a:hover {
+  background-color: var(--background-inputfield);
+}
+
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
 .dropdown:hover .dropdown-button {
   background-color: var(--background-inputfield);
+}
+@media (min-width: 1000px) and (max-width: 1920px) {
+  .logo {
+    font-size: 2rem;
+  }
+  .dropdown-content {
+    font-size: 1.25rem;
+    right: 1rem;
+  }
 }
 </style>

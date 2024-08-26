@@ -7,13 +7,14 @@
         @updateSearch="updateWordSearch"
         @postCreated="fetchPosts"
       />
+
+      <PostListContainer
+        :posts="posts"
+        :selectedFilter="selectedFilter"
+        :wordSearch="wordSearch"
+        @postDelete="postDelete"
+      />
     </div>
-    <PostListContainer
-      :posts="posts"
-      :selectedFilter="selectedFilter"
-      :wordSearch="wordSearch"
-      @postDelete="postDelete"
-    />
   </div>
 </template>
 
@@ -62,14 +63,27 @@ export default {
 #home {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .filter {
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: -1rem;
 }
 
 .post-list-container {
   flex: 1;
   max-height: 70vh;
+}
+
+@media (min-width: 900px) {
+  .filter {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 1000px;
+    min-height: 750px;
+    align-self: center;
+  }
 }
 </style>

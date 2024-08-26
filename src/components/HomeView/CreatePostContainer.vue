@@ -1,6 +1,7 @@
 <template>
   <div class="create-post-container" @click.self="close">
     <div class="create-post">
+      <button class="close-button" type="button" @click="close">&times;</button>
       <form @submit.prevent="createPost">
         <div class="create-post-title">
           <input v-model="title" class="text" type="text" id="title" placeholder="Title..." />
@@ -20,7 +21,6 @@
 
         <div class="action-button">
           <button class="create-button" type="submit">Create</button>
-          <button class="close-button" type="button" @click="close">&times;</button>
         </div>
       </form>
     </div>
@@ -80,22 +80,22 @@ export default {
   z-index: 20;
   height: 100%;
   width: 100%;
-  padding: 3rem 0.8rem;
+  padding: 3rem 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.325);
+  backdrop-filter: blur(2px);
 }
 
 .close-button {
-  position: absolute;
-  top: 3.5rem;
-  right: 1.7rem;
   background: rgba(255, 255, 255, 0);
   border: none;
-  font-size: 2rem;
+  font-size: 3rem;
   color: var(--background-inputfield);
   cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
 }
 .create-post {
   display: flex;
@@ -103,7 +103,7 @@ export default {
   height: 100%;
   width: 100%;
   max-width: 100%;
-  padding: 3.5rem 1rem;
+  padding: 1rem;
   background-color: var(--header-color);
   border-radius: 1rem;
 }
@@ -162,5 +162,14 @@ export default {
   text-align: center;
   color: black;
   background-color: var(--background-inputfield);
+}
+
+@media (min-width: 100px) and (max-width: 1920px) {
+  .create-post {
+    max-width: 600px;
+    max-height: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 </style>

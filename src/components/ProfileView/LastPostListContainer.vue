@@ -62,7 +62,8 @@ export default {
   border-radius: 10px;
   height: 300px;
   overflow-y: auto;
-  margin: 2.2rem;
+  margin: 0 auto;
+  max-width: 600px;
 }
 .post {
   display: grid;
