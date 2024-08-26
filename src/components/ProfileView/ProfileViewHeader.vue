@@ -39,6 +39,8 @@ export default {
 <style scoped>
 .header {
   background-color: var(--background-color);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .cover {
