@@ -35,7 +35,7 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-content: center;
-  max-width: 780px;
+
   margin: 0 auto;
   padding: 1rem;
 }
@@ -59,5 +59,16 @@ export default {
   display: flex;
   flex-direction: row;
   padding-left: 1rem;
+}
+
+@media (min-width: 900px) and (max-width: 1920px) {
+  .container {
+    margin: 1rem auto;
+    max-width: 70vh;
+    height: 9.5vh;
+  }
+  .profile-status {
+    font-size: 1rem;
+  }
 }
 </style>

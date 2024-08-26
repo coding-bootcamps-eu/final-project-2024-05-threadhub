@@ -39,13 +39,13 @@ export default {
 <style scoped>
 .header {
   background-color: var(--background-color);
-  max-width: 600px;
+
   margin: 0 auto;
 }
 
 .cover {
   position: relative;
-  height: 20rem;
+  height: 15rem;
 }
 
 .container-cover-picture {
@@ -75,7 +75,15 @@ p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  top: 80%;
+  top: 82.5%;
   font-size: 1.5rem;
+}
+
+@media (min-width: 900px) and (max-width: 1920px) {
+  .header {
+    margin: 1rem auto;
+    max-width: 70vh;
+    height: 25vh;
+  }
 }
 </style>

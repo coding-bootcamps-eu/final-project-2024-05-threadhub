@@ -57,14 +57,16 @@ export default {
 </script>
 <style scoped>
 .post-list-container {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   background-color: var(--header-color);
   border-radius: 10px;
-  height: 300px;
+  height: 30vh;
   overflow-y: auto;
-  margin: 0 auto;
-  max-width: 600px;
+  margin: 0 1rem;
 }
+
 .post {
   display: grid;
   grid-template-rows: 2;
@@ -149,5 +151,13 @@ export default {
   margin-top: 0.5rem;
   display: flex;
   justify-content: space-between;
+}
+
+@media (min-width: 900px) and (max-width: 1920px) {
+  .post-list-container {
+    margin: 1rem auto;
+    max-width: 70vh;
+    height: 45vh;
+  }
 }
 </style>

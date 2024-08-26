@@ -54,11 +54,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  position: relative;
-}
-.content {
-  margin: 1rem;
-}
-</style>
+<style scoped></style>
