@@ -92,7 +92,7 @@ export default {
   border-radius: 1.3rem;
 
   overflow-y: auto;
-  margin: 1rem 1rem 0 1rem;
+  margin: 1rem;
 }
 .post {
   display: grid;
@@ -206,11 +206,9 @@ export default {
   border-radius: 10px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 900px) and (max-width: 1920px) {
   .post-list-container {
-    min-height: 800px;
-    max-width: 1000px;
-    margin: 1rem auto 1rem auto;
+    max-height: 700px;
   }
   .delete-popup {
     width: 20%;
