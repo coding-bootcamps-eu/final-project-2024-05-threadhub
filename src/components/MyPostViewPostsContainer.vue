@@ -69,11 +69,12 @@ export default {
 <style scoped>
 .post-list-container {
   padding: 1.5rem;
-
+  max-width: 670px;
   border-radius: 1.3rem;
 
   overflow-y: auto;
-  margin: 1rem;
+  margin: 1rem auto;
+  padding: 2rem;
 }
 
 .post {
@@ -117,6 +118,7 @@ export default {
   padding: 0.2rem 0.8rem;
   border-radius: 0.2rem;
   cursor: pointer;
+  max-height: 25px;
 }
 
 .popup-confirm {
