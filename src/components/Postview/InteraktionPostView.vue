@@ -193,6 +193,10 @@ export default {
   background-color: var(--background-color);
 }
 
+#comment-input {
+  font-size: 1rem;
+}
+
 [disabled] {
   opacity: 0.5;
 }
