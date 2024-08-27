@@ -97,54 +97,10 @@ export default {
 
 .tags {
   font-size: 0.75rem;
-  background-color: red;
+  background-color: var(--header-color);
   padding: 0.15rem 0.35rem;
   border-radius: 10px;
-}
-
-.delete-button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 0.2rem 0.4rem;
-  border-radius: 0.2rem;
-  cursor: pointer;
-}
-
-.popup-confirm {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  text-align: center;
-}
-.confirm-button {
-  background-color: #28a745;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 5px;
-  margin-right: 0.5rem;
-  cursor: pointer;
-}
-.cancel-button {
-  background-color: red;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.2rem;
-  cursor: pointer;
+  color: var(--font-color);
 }
 
 .post-header {

@@ -8,9 +8,11 @@
         <p>Thread melden</p>
       </div>
     </div>
-    <div v-if="showPopup" class="popup">
-      <p>Bearbeitung nicht mehr möglich. Zeit abgelaufen!</p>
-      <button @click="closePopup">OK</button>
+    <div class="blur">
+      <div v-if="showPopup" class="popup">
+        <p>Bearbeitung nicht mehr möglich. Zeit abgelaufen!</p>
+        <button @click="closePopup">OK</button>
+      </div>
     </div>
   </div>
 </template>
@@ -94,7 +96,7 @@ button {
   flex-direction: column;
   position: absolute;
   right: 1rem;
-  top: 32%;
+  top: 15rem;
   z-index: 1;
   width: 10rem;
   gap: 0.75rem;
@@ -123,8 +125,8 @@ button {
 }
 
 .popup {
-  position: fixed;
-  top: 39%;
+  position: absolute;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
@@ -142,5 +144,11 @@ button {
   border: none;
   border-radius: 0.6rem;
   cursor: pointer;
+}
+
+@media (min-width: 900px) and (max-width: 1920px) {
+  .dropdown-content {
+    top: 13.5rem;
+  }
 }
 </style>

@@ -6,7 +6,7 @@
       </div>
       <div class="post-header">
         <p class="title">{{ post.title }}</p>
-        <button @click="confirmDelete(post.id)" class="delete-button">Löschen</button>
+        <button @click="confirmDelete(post.id)" class="delete-button">Delete</button>
       </div>
     </div>
   </div>
@@ -81,11 +81,12 @@ export default {
   display: grid;
   grid-template-rows: 2;
   grid-template-columns: 1;
+
   gap: 0.25rem;
 
   background-color: var(--background-inputfield);
   border: 1px solid #ccc;
-  padding: 0.4rem;
+  padding: 0.5rem;
   margin-bottom: 1rem;
   border-radius: 0.5rem;
 }
@@ -105,20 +106,22 @@ export default {
 }
 .tags {
   font-size: 0.66rem;
-  background-color: red;
+  background-color: var(--header-color);
+  color: var(--font-color);
   padding: 0.15rem 0.35rem;
   border-radius: 10px;
   margin: 0;
 }
 
 .delete-button {
-  background-color: red;
-  color: white;
+  background-color: rgb(192, 31, 31);
+  color: var(--font-color);
   border: none;
   padding: 0.2rem 0.8rem;
   border-radius: 0.2rem;
   cursor: pointer;
   max-height: 25px;
+  margin-top: 0.25rem;
 }
 
 .popup-confirm {
@@ -161,5 +164,17 @@ export default {
   margin-top: 0.5rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.post-header p {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (min-width: 900px) and (max-width: 1920px) {
+  .post-header p {
+    font-size: 1.5rem;
+  }
 }
 </style>

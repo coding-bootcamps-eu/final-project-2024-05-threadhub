@@ -95,7 +95,8 @@ export default {
   cursor: pointer;
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
+  margin-top: -1rem;
 }
 .create-post {
   display: flex;
